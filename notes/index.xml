@@ -127,5 +127,14 @@
       <description> </description>
     </item>
     
+    <item>
+      <title></title>
+      <link>https://kmsaumcis.github.io/mcis6273_f17_datamining/notes/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://kmsaumcis.github.io/mcis6273_f17_datamining/notes/readme/</guid>
+      <description> Lecture Notes    Lecture Summary     1 introduction to data mining and data science, Python stack for DS, Github, Jupyter Notebooks.    </description>
+    </item>
+    
   </channel>
 </rss>

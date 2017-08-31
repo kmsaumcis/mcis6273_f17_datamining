@@ -82,10 +82,13 @@
 
 <p>At the core of data mining is the exploration of <em>finding meaningful patterns in data</em>, often in pursuit of patterns that will help explain a phenomenon that would ordinarily not be possible with human effort alone.  Data mining borrows much of its heritage from applied mathematics and statistical thinking, but with the rise of <em>massive data</em>, traditional statistical techniques often fall short and require completely different algorithmic approaches and computational technologies.</p>
 
-<p>This <em>massive data</em> cannot be overstated. When we look at even a small susbset of the &ldquo;dataverse&rdquo; (a term I am loosely using to encompass the whole of data), data from the web and social media, <a href="http://wersm.com/how-much-data-is-generated-every-minute-on-social-media/#prettyPhoto">some estimates suggest</a> that data is being created at a rate never before seen.  For example every minute:
-* over 300 hours of YouTube video is being uploaded,
-* 77,000+ hours of video are being streamed over Netflix,
-* 51,000+ apps are downloaded from the Apple iTunes store,</p>
+<p>This <em>massive data</em> cannot be overstated. When we look at even a small susbset of the &ldquo;dataverse&rdquo; (a term I am loosely using to encompass the whole of data), data from the web and social media, <a href="http://wersm.com/how-much-data-is-generated-every-minute-on-social-media/#prettyPhoto">some estimates suggest</a> that data is being created at a rate never before seen.  For example every minute:</p>
+
+<ul>
+<li>over 300 hours of YouTube video is being uploaded,</li>
+<li>77,000+ hours of video are being streamed over Netflix,</li>
+<li>51,000+ apps are downloaded from the Apple iTunes store,</li>
+</ul>
 
 <p>and so on.  Our ability to consume this data, let alone make sense of it is indeed being challenged, hence the rapid rise of data mining, machine learning and data science technologies in the last decade.</p>
 
@@ -97,34 +100,46 @@
 
 <p>Our attention will largely be on the <em>statistical and mathematical</em>, <em>software engineering</em> components, and we will add to this <em>data engineering</em>, <em>data visualization</em>, with an eye towards specific areas of <em>text mining</em>, <em>social network analysis</em> and <em>data ethics</em>.</p>
 
-<p>While some argue the term &ldquo;data mining&rdquo; might be subsumed by &ldquo;data science&rdquo; or that is a bit of a misnomer, we&rsquo;ll stick with the term, knowing that while we may &ldquo;mine&rdquo; for data, the outcomes of such mining should be carefully considered in the context of whether such outcomes are meaningful or not.  We will come to understand that many results and outcomes of data analyses must be couched carefully as to avoid misinterpretation, since often there may be outcomes that confirm what we <em>want</em> rather than what <em>actually exists</em>, or even worse something that <em>doesn&rsquo;t</em> exist but rather produces enough signal to seem meaningful, but in reality is just noise.  This is no different than the criticisms lodged at statistical models that confirm the relationships being sought, rather than the actual relationships that truly describe a phenomenon.</p>
+<p>While some argue the term &ldquo;data mining&rdquo; might be subsumed by &ldquo;data science&rdquo; or that it is a bit of a misnomer, we&rsquo;ll stick with the term, knowing that while we may &ldquo;mine&rdquo; for &ldquo;data&rdquo;, the outcomes of such mining should be carefully considered in the context of whether such outcomes are meaningful or not.  We will come to understand that many results and outcomes of data analyses must be couched carefully as to avoid misinterpretation, since often there may be outcomes that confirm what we <em>want</em> rather than what <em>actually exists</em>, or even worse something that <em>doesn&rsquo;t</em> exist but rather produces enough signal to seem meaningful, but in reality is just noise.  This is no different than the criticisms lodged at statistical models that confirm the relationships being sought, rather than the actual relationships that truly describe a phenomenon.</p>
 
 <h2 id="data-mining-workflow">DATA MINING WORKFLOW</h2>
 
 <p>The data mining process can be summarized as follows:</p>
 
-<p><strong>DATA ENGINEERING AND PREPARATION</strong>
-&gt; Data cleaning<br/>
+<p><strong>DATA ENGINEERING AND PREPARATION</strong></p>
+
+<blockquote>
+<p>Data cleaning<br/>
 Data integration<br/>
 Data selection<br/>
 Data transformation</p>
+</blockquote>
 
-<p><strong>DATA  EXPLORATION, MODEL BUILDING AND ANALYSIS</strong>
-&gt; Statistical analysis<br/>
+<p><strong>DATA  EXPLORATION, MODEL BUILDING AND ANALYSIS</strong></p>
+
+<blockquote>
+<p>Statistical analysis<br/>
 Pattern mining<br/>
 Prediction<br/>
 Classification<br/>
 Clustering</p>
+</blockquote>
 
-<p><strong>EVALUATION AND MODEL INTERPRETATION</strong>
-&gt; Pattern evaluation<br/>
+<p><strong>EVALUATION AND MODEL INTERPRETATION</strong></p>
+
+<blockquote>
+<p>Pattern evaluation<br/>
 Model interpretation and evaluation<br/></p>
+</blockquote>
 
-<p><strong>PRESENTATION</strong>
-&gt; Visualization and Reporting<br/>
+<p><strong>PRESENTATION</strong></p>
+
+<blockquote>
+<p>Visualization and Reporting<br/>
 Data narratives<br/></p>
+</blockquote>
 
-<p>You might look at the process and think that most of your time will be spent in analysis, but this is often not the case.  As [we&rsquo;ll explore soon]() data engineering and preparation can <em>often be the most time consuming component</em> of the process, since  the type of data (structured, unstructured), the source of the data (database, online, etc.) and the volume of data might require significant cleaning, selection and transformation.  Luckily, there are many tools that can ease the complexity of these tasks.</p>
+<p>You might look at the process and think that most of your time will be spent in analysis, but this is often not the case.  As we&rsquo;ll explore soon data engineering and preparation can <em>often be the most time consuming component</em> of the process, since  the type of data (structured, unstructured), the source of the data (database, online, etc.) and the volume of data might require significant cleaning, selection and transformation.  Luckily, there are many tools that can ease the complexity of these tasks.</p>
 
 <h2 id="data-sources">DATA SOURCES</h2>
 
@@ -171,7 +186,7 @@ Data narratives<br/></p>
 
 <tr>
 <td align="center"><strong><em>Clustering</em></strong></td>
-<td align="left">Uncovering patterns in data that are typically not know or previously categorized.  For example, determining the topics within a set of unknown tweets; or finding the usage patterns of a particular application.</td>
+<td align="left">Uncovering patterns in data that are typically not known or previously categorized.  For example, determining the topics within a set of unknown tweets; or finding the usage patterns of a particular application.</td>
 </tr>
 
 <tr>
