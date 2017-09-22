@@ -56,7 +56,7 @@
 <tr>
 <td align="center">20</td>
 <td align="center">Saturday, Sep 30 @ Midnight</td>
-<td align="center">up to 10 hours</td>
+<td align="center"><em>up to</em> 10 hours</td>
 </tr>
 </tbody>
 </table>
@@ -103,12 +103,17 @@ with the answers to the questions labeled with the &#167; sign.</p>
 <li>understand how to randomly sample datasets to understand the distribution of data.</li>
 </ul>
 
-<p>We&rsquo;ll be working a new  much smaller dataset for this task.  Please check the repository for the <code>bank.csv</code> data set.  There are fewer than 1000 rows to work with in this data.  You will need to use <a href="http://pandas.pydata.org/">Pandas</a> and <a href="http://scikit-learn.org/stable/index.html">Scikit-Learn</a> for all the questions here, and it is recommended you take a look at the optional cheat sheets <a href="https://kmsaumcis.gitbub.io/mcis6273_f17_datamining/syllabus">for lecture 2 in the syllabus</a>.</p>
+<p>We&rsquo;ll be working a new  much smaller dataset for this task.  Please check the repository for the <a href="https://github.com/kmsaumcis/mcis6273_f17_datamining/blob/master/homework/hw1/bank-data.csv"><code>bank.csv</code> data set</a>.  There are fewer than 1000 rows to work with in this data.  You will need to use <a href="http://pandas.pydata.org/">Pandas</a> and <a href="http://scikit-learn.org/stable/index.html">Scikit-Learn</a> for all the questions here, and it is recommended you take a look at the optional cheat sheets <a href="https://kmsaumcis.gitbub.io/mcis6273_f17_datamining/syllabus">for lecture 2 in the syllabus</a>:</p>
 
-<p>&#167;  In the readings and lecture, we talked about distributions of data.  Please produce the frequency distribution (histogram) for the following:  (1) rural income, (2) car ownership age.  You will most certainly need to use the <a href="http://pandas.pydata.org/pandas-docs/stable/visualization.html#visualization-hist"><code>pandas.Series.plot.hist()</code></a> method.</p>
+<ul>
+<li><a href="https://github.com/jvns/pandas-cookbook">Pandas Cookbook Github Repo</a></li>
+<li><a href="https://s3.amazonaws.com/assets.datacamp.com/blog_assets/PandasPythonForDataScience.pdf">Pandas Cheatsheet @ DataCamp.com</a></li>
+</ul>
+
+<p>&#167;  In the readings and lecture, we talked about distributions of data.  Please produce the frequency distribution (histogram) for the following:  (1) rural income, (2) car ownership.  You will most certainly need to use the <a href="http://pandas.pydata.org/pandas-docs/stable/visualization.html#visualization-hist"><code>pandas.Series.plot.hist()</code></a> method.</p>
 
 <p>&#167;  Produce the scatter plot for income vs age &ndash; it doesn&rsquo;t matter which
-is on the $x$ and $y$ axis.  You will benefit from the <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.plot.scatter.html#pandas.DataFrame.plot.scatter">DataFrame.plot.scatter()</a> method.</p>
+is on the $x$ and $y$ axis.  You will benefit from the <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.plot.scatter.html#pandas.DataFrame.plot.scatter"><code>DataFrame.plot.scatter()</code></a> method.</p>
 
 <h3 id="40-explore-concepts-in-statistical-inference-over-real-data-within-scikit-learn">(40%) Explore concepts in statistical inference over real data within Scikit-Learn</h3>
 
@@ -128,14 +133,17 @@ borrowers.</p>
 and build the case for the profile of the borrower (from this dataset)
 that they should start calling, sending mail and advertising to.</p>
 
-<p>As an analyst you will need to do the following:
-  * build the dataset that contains non-homeowners (i.e. no mortgage)
-  * report on the characteristics of non-homeowners based on what is being asked</p>
+<p>Imagine you are a real-world analyst and will need to do the following:</p>
 </blockquote>
 
-<p>&#167;  What is the median age of a UNMARRIED, FEMALE, HOME OWNER in the SUBURBAN region?</p>
+<ul>
+<li>build the dataset that contains non-homeowners (i.e. no mortgage)</li>
+<li>report on the characteristics of non-homeowners based on what is being asked</li>
+</ul>
 
-<p>&#167;  Given this bank datset what is the joint probability $\Pr( \mathrm{sex} = MALE \wedge \mathrm{income} \ge 50,000 )$?  How does this compare with $\Pr( \mathrm{sex} = MALE \wedge \mathrm{income} \ge 50,000 )$?</p>
+<p>&#167;  What is the median age of a <code>UNMARRIED</code>, <code>FEMALE</code>, <code>HOME OWNER</code> in the <code>SUBURBAN</code> region?</p>
+
+<p>&#167;  Given this bank datset what is the joint probability $\Pr( \mathrm{sex} = MALE \wedge \mathrm{income} \ge 50,000 )$?  How does this compare with $\Pr( \mathrm{sex} = FEMALE \wedge \mathrm{income} \ge 50,000 )$?</p>
 
 <p>&#167;  What is  conditional probability $\Pr( car = \mathrm{TRUE} \big| sex = \mathrm{MALE} \wedge income \ge \mathrm{50,000} )$?</p>
 
@@ -144,22 +152,22 @@ than $45,000, what about this data might make it difficult to justify
 any campaign at all?  (<strong>HINT:</strong> most mortgages are 30-years in duration) Provide <strong>concrete evidence</strong> for your claims; you may do this in a variety of ways <em>including describing the statistic that leads you to your claim</em>.</p>
 
 <p>&#167;  If the savings account requirement was ignored and the income
-lowered to a minimum of $30,000, to whom (<code>male</code> or <code>female</code>) and in
-which region (<code>rural</code>, <code>town</code>, <code>inner_city</code>, <code>suburban</code>) would the bank
-likely have the best success?</p>
+lowered to a minimum of $30,000, to whom (<code>MALE</code> or <code>FEMALE</code>) and in
+which region (<code>RURAL</code>, <code>TOWN</code>, <code>INNER_CITY</code>, <code>SUBURBAN</code>) would
+the bank likely have the best success?</p>
 
 <h3 id="40-work-with-data-to-understand-distance-metrics-in-scikit-learn-and-the-impact-various-metrics-have-on-the-outcomes">(40%) Work with data to understand distance metrics in Scikit-Learn and the impact various metrics have on the outcomes</h3>
 
 <p>A common thing to understand in a dataset is to determine some
 number of <em>nearest neighbors</em> to a data point.  We will see this come
 back when we get to clustering.  For now, let&rsquo;s explore the
-<a href="http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.NearestNeighbors.html#sklearn.neighbors.NearestNeighbors">NearestNeigbor</a>
-implementation in SciKit-Learn.</p>
+<a href="http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.NearestNeighbors.html#sklearn.neighbors.NearestNeighbors">NearestNeighbor</a>
+implementation in Scikit-Learn.</p>
 
 <p>You will most certainly need to convert the categorical non-numeric data
 to binary features, and you may be served well by reading about
 <a href="http://scikit-learn.org/stable/modules/preprocessing.html#preprocessing">preprocessing data in Scikit-Learn</a> and also taking
-a closer look at <a href="http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelBinarizer.html#sklearn.preprocessing.LabelBinarizer">sklearn.preprocessing.LabelBinarizer</a> and <a href="http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html#sklearn.preprocessing.OneHotEncoder">sklearn.preprocessing.OneHotEncoder</a>.  You might also find
+a closer look at <a href="http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelBinarizer.html#sklearn.preprocessing.LabelBinarizer"><code>sklearn.preprocessing.LabelBinarizer</code></a> and <a href="http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html#sklearn.preprocessing.OneHotEncoder"><code>sklearn.preprocessing.OneHotEncoder</code></a>.  You might also find
 <a href="https://courses.edx.org/c4x/BerkeleyX/CS190.1x/asset/CS190.1x_week4b.pdf">this resource</a>
 of value if you read only the first few slides on binarization.</p>
 
@@ -169,7 +177,7 @@ of the 5 closest indices and their values (e.g. <code>[(5, 4.56356), (19, 8.8345
 (default) distance</em> first.</p>
 
 <p>&#167;  Use the <em>cosine similarity metric</em> and <em>euclidean distance metric</em>
-(e.g. invoke <code>NearestNeighbor(..., metric='cosine')</code> and <code>NearestNeighbor(..., metric='cosine')</code>).
+(e.g. invoke <code>NearestNeighbor(..., metric='cosine')</code> and <code>NearestNeighbor(..., metric='euclidean')</code>).
 Produce the same lists for the same indices as in #1.  What are
 the differences in the nearest neighbor lists?  Which seem to be
 the most similar? Provide your thoughts on why there are differences?</p>
