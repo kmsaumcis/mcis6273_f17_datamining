@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> | MCIS6273 | Data Mining | Fall 2017</title>
+    <link rel="stylesheet" href="/mcis6273_f17_datamining/css/style.css" />
+    <link rel="stylesheet" href="/mcis6273_f17_datamining/css/fonts.css" />
+    <style>
+@import url('https://fonts.googleapis.com/css?family=Fanwood+Text:400,400i|Faustina:400,400i,600,600i|Libre+Baskerville|Lora:400,400i,700,700i|Merriweather:400,400i,700,700i|Old+Standard+TT|Open+Sans:400,400i,700,700i|Playfair+Display|Radley|Spectral:400,400i,600,600i,700,700i');
+</style>
+
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/mcis6273_f17_datamining">Home</a></li>
+      
+      <li><a href="/mcis6273_f17_datamining/syllabus/">Syllabus</a></li>
+      
+      <li><a href="/mcis6273_f17_datamining/homework/">Homework</a></li>
+      
+      <li><a href="/mcis6273_f17_datamining/notes/">Lecture Notes</a></li>
+      
+      <li><a href="/mcis6273_f17_datamining/index.xml">Subscribe</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+<div class="article-meta">
+<h1><span class="title"></span></h1>
+
+
+</div>
+
+<main>
+
+
+<h1 id="mcis6273-data-mining-fall-2017-hw2">MCIS6273 Data Mining / Fall 2017 / HW2</h1>
+
+<p><strong>This assignment is worth up to 20 POINTS to your grade total if you complete it on time.</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Points <br/>Possible</th>
+<th align="center">Due Date</th>
+<th align="center">Time Commitment <br/>(estimated)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">20</td>
+<td align="center">Wednesday, Oct 18 @ Midnight</td>
+<td align="center"><em>up to</em> 16 hours</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li><p><strong>GRADING:</strong> Grading will be aligned with the completeness of the objectives.</p></li>
+
+<li><p><strong>INDEPENDENT WORK:</strong> Copying, cheating, plagiarism  and academic dishonesty <em>are not tolerated</em> by Univerisity or course policy.  Please see the syllabus for the full departmental and University statement on the academic code of honor.</p></li>
+</ul>
+
+<h2 id="objectives">OBJECTIVES</h2>
+
+<ul>
+<li><p>CLEAN AND PREPARE:   Work with Pandas and Scikit to preprocess and reshape a real world dataset</p></li>
+
+<li><p>SUMMARIZE AND DESCRIBE:   Work with Pandas and Scikit to describe and  summarize the statistical features of a real world dataset</p></li>
+
+<li><p>EXPLORE AND VISUALIZE:   Work with Scikit to do exploratory data analysis on a real world dataset looking correlation relationships and clustering</p></li>
+</ul>
+
+<h2 id="what-to-turn-in">WHAT TO TURN IN</h2>
+
+<p>You are being encouraged to turn the assignment in using the provided
+Jupyter Notebook.  To do so, clone
+<a href="https://github.com/kmsaumcis/mcis6273_f17_datamining">the course repository</a> and modify
+the <code>hw2.ipynb</code> file in the <code>homework/hw2</code> directory.  If you do not know
+how to do this, please ask, or visit one of the many tutorials out there
+on the basics of using Github and cloning repositories.</p>
+
+<p>Turn in a copy of a <code>.ipynb</code> file, a PDF or Word Document to Blackboard
+with the answers to the questions labeled with the &#167; sign.</p>
+
+<h2 id="assignment-tasks">ASSIGNMENT TASKS</h2>
+
+<h3 id="15-clean-and-prepare-work-with-pandas-and-scikit-to-preprocess-and-reshape-a-real-world-dataset">(15%) CLEAN AND PREPARE:   Work with Pandas and Scikit to preprocess and reshape a real world dataset</h3>
+
+<p>We will continue to practice preprocessing data, except this time with a much larger dataset than last time &ndash; get the coolers and heat sinks in your machines prepared.
+Real world data usually requires <strong>sanitizing</strong> of some sort &ndash; indeed it is very rare to be given a dataset that is entirely pristine unless the preprocessing was already done.  <em>Dirty data</em>, so to speak, is still an important activity for data scientists, data engineerings and machine learning engineers alike.
+The dataset for this task is a <a href="https://www.kaggle.com/new-york-city/nyc-property-sales/data">Kaggle dataset</a> that provides real estate transactions in New York City from 2016 and 2017 &ndash; these are <em>actual transactions</em> and this is a remarkably interesting dataset.  As before, we will need to cleanse the data and prepare it so that it is in a condition that can be used by the Sklearn estimators (we&rsquo;ll be doing some clustering in the last part of this assignment).  You are free to download the dataset (account required) or obtain it from the course Github repo.  You are also encouraged to see <a href="https://www.kaggle.com/new-york-city/nyc-property-sales/kernels">what others are doing with this dataset</a> and if you learn something useful &hellip; perhaps it will be valuable in completing your homework!
+NOTE: before you being part 2 (<strong>summarize and describe</strong>), make sure all numeric data is forced to numeric (use <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.to_numeric.html#pandas.to_numeric"><code>pd.to_numeric()</code></a>  and set <code>errors='coerce'</code>).
+There are 5 tasks that will be required to do the rest of the homework (parts 2 and 3).</p>
+
+<p>&#167;  Load the dataset into a DataFrame and make sure all columns are numeric data, except for those indicated.  You will need to use the <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.to_numeric.html"><code>Pandas.to_numeric()</code></a> on everything <strong>except</strong> <code>NEIGHBORHOOD</code>, <code>BUILDING CLASS CATEGORY</code>, <code>TAX CLASS AT PRESENT</code>, <code>TAX CLASS AT TIME OF SALE</code>, <code>BUILDING CLASS AT TIME OF SALE</code> and <code>SALE DATE</code>.</p>
+
+<p>&#167;  Drop data columns as indicated:</p>
+
+<ul>
+<li>Drop all data values for which <code>SALE PRICE</code> is less than 1000 (e.g. <code>SALE PRICE=1000</code>).</li>
+<li>Drop the entire <code>EASE-MENT</code> column.</li>
+<li>Drop the <code>ADDRESS</code> column.  NOTE:  You will need to make note of the address / index if you decide to do the bonus part (so read it before you drop, if you&rsquo;d like to do the bonus).
+
+<ul>
+<li>Drop any properties with a <code>SALE YEAR &lt; 1600</code>.</li>
+</ul></li>
+</ul>
+
+<p>&#167;  Perform the following adjustments:</p>
+
+<ul>
+<li>Impute all <code>YEAR BUILT</code> data using the <a href="http://scikit-learn.org/stable/modules/preprocessing.html#imputation-of-missing-values"><code>sklearn.preprocessing.Imputer</code></a>.  You can just use the median.</li>
+
+<li><p>Use the function</p>
+
+<pre><code class="language-python">  def convert_timedate_series(series):
+      data = pd.DataFrame({ \
+          'SALE MONTH': pd.to_datetime(series).dt.month, \
+          'SALE DAY': pd.to_datetime(series).dt.day, \
+          'SALE YEAR': pd.to_datetime(series).dt.year })
+
+      return \
+          data.columns, data
+</code></pre>
+
+<p>to convert and split <code>SALE DATE</code> to its constituent parts.  This
+will ease the binarization step below.  You will need to append
+these new columns to your clean (and working) DataFrame.  Try:</p>
+
+<pre><code class="language-python">columns, data = convert_timedate_series(df_clean['SALE DATE'])
+df_clean[columns] = data
+</code></pre>
+
+<ul>
+<li>and then DROP the <code>SALE DATE</code> column when this is done.</li>
+</ul></li>
+</ul>
+
+<p>&#167;  Convert, binarize and scale the date as indicated:</p>
+
+<ul>
+<li><p>binarized the data &ndash; you are free to use the very convenient <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.get_dummies.html#pandas.get_dummies"><code>Pandas.get_dummies()</code></a> or reuse any code you produced from the last exercise.</p></li>
+
+<li><p>scale the data using <a href="http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.minmax_scale.html#sklearn.preprocessing.minmax_scale">minmax scaling</a>, so all data values are in the entire dataset are between 0 and 1.</p></li>
+
+<li><p>convert all <code>NaN</code> data to <code>0</code>.</p></li>
+
+<li><p>strip and remove whitespace from any remaining columns that have text.  You can use any method you want, but the <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.str.strip.html#pandas.Series.str.strip"><code>Series.str.strip()</code></a> method might be of help.</p></li>
+</ul>
+
+<p>&#167;  Store the cleaned DataFrame back as a CSV object (see HW0) and make sure this is turned in with your homework submission!  You can name the file <code>nyc_data_clean.csv</code>.</p>
+
+<p>&#167;  <strong>OPTIONAL BONUS WORTH UP TO 10 EXTRA CREDIT POINTS:</strong> Get a free API key and use the <a href="http://www.geonames.org/export/ws-overview.html">GeoNames API</a> to improve the data set, by adding a <code>lat</code> and <code>lon</code> coordinates to every property (using the address lookup). NOTE: the API limit is 20K calls for the day, so you will need to run this over several 24 hour periods between API limits (or use multiple accounts, or whatever).  For the <strong>first</strong> student who <em>creates this dataset and makes it public on their Github account</em> (and shares it with me or your classmates), I will offer you a <strong>total of 10 extra credit points</strong> that will be applied to your homework total for the course.  Varying levels of completeness toward that goal will earn some points less than 10.</p>
+
+<h3 id="25-summarize-and-describe-work-with-pandas-and-scikit-to-describe-and-summarize-the-statistical-features-of-a-real-world-dataset">(25%) SUMMARIZE AND DESCRIBE:   Work with Pandas and Scikit to describe and  summarize the statistical features of a real world dataset</h3>
+
+<p>Now that we have a clean dataset, we will continue to practice describing it.  Here we will look at the <strong>cleaned</strong> version from the <strong>CLEAN AND PREPARE</strong> step above.  Answer the following questions based on that clean dataset.</p>
+
+<p>&#167;  Group the properties <strong>by zipcode</strong> in the clean dataset.</p>
+
+<ul>
+<li>What  are the  <strong>top 5 zipcodes with the largest total number of properties for sale</strong> (ignore property type for now).</li>
+<li>What boroughs are these zip codes in?  You can inspect the dataset directly (go back to the Kaggle page for this dataset to see which code maps to the borough), use your favorite search engine to look up the zipcodes, or even use <a href="http://www.geonames.org/postal-codes/">Geonames postal code lookup</a>.</li>
+</ul>
+
+<p>&#167;  Using the data from above, grouped by zipcode:</p>
+
+<ul>
+<li>Which borough has the highest <strong>mean</strong> sale price of <em>commercial</em> office buildings (HINT: <code>'BUILDING CLASS CATEGORY'=='21 OFFICE BUILDINGS'</code>)?</li>
+<li>What is the <strong>median sale price</strong> of that same borough?</li>
+</ul>
+
+<p>&#167;  We talked about correlation in the lectures and now we&rsquo;re going to explore that more.  Correlation can be accessed via a number of mechanisms, the primary of which is using Pandas <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.corr.html#pandas.DataFrame.corr()"><code>DataFrame.corr()</code></a> which produces a matrix representation of the correlations among numeric variables in your data.  You can also use the <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.corrcoef.html"><code>numpy.corrcoef()</code></a> which also allows you to compare single <em>numeric</em> features against one another.  Both use the Pearson&rsquo;s correlation as we talked about in class.  <strong>Compute the correlation matrix</strong> using either method above.</p>
+
+<ul>
+<li>Which features are <strong>mostly highly correlated</strong>?</li>
+<li>Do the highly correlated <strong>features make sense</strong> to you?  Please provide a sentence of two of your reasons why or why not.</li>
+</ul>
+
+<p>&#167;  Filter the data to just those residential properties sold since 2005 (filter such that <code>RESIDENTIAL UNITS &gt; 0 &amp; COMMERCIAL UNITS &lt;= 0</code>):</p>
+
+<ul>
+<li>What borough has the <strong>largest number of new(er) properties</strong> sold?</li>
+<li>What was the <strong>mean and median price for each borough</strong>?</li>
+</ul>
+
+<p>&#167;  Group properties by month and year.</p>
+
+<ul>
+<li>Create a line <strong>plot of sales volume by month</strong> (HINT: aggregate by month) for 2016 only.  You may ignore 2017 properties for now.  The $x$ axis will be the month and $y$ axis the volume (count).</li>
+</ul>
+
+<h3 id="60-explore-and-visualize-work-with-scikit-to-do-exploratory-data-analysis-on-a-real-world-dataset-looking-correlation-relationships-and-clustering">(60%) EXPLORE AND VISUALIZE:   Work with Scikit to do exploratory data analysis on a real world dataset looking correlation relationships and clustering</h3>
+
+<p>We will finish this exercise by exploring relationships, visualizing correlations and looking at using unsupervised clustering algorithms available in Scikit.</p>
+
+<p>&#167;  In part 2 you created a correlation matrix with numbers, but this matrix can be visualized using a <em>heat map</em> visualization.  You may already be familiar with heat maps (or at least seen them and not known that was what they were called), but with a correlation matrix, we can easily visualize the heatmap by converting each matrix cell (which contains the correlation between each pair of features in the data) to a color corresponding the the relative strength of the correlation.  We will use <a href="http://seaborn.pydata.org/generated/seaborn.heatmap.html?highlight=heatmaps">open Seaborn&rsquo;s heatmap</a> to do this.</p>
+
+<ul>
+<li><p>Use this boilerplate code <strong>and turn in the heatmap for all numeric variables in your dataset</strong></p>
+
+<pre><code class="language-python">%matplotlib inline
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.set(style=&quot;white&quot;)
+
+# Compute the correlation matrix before
+###
+     YOUR ONE LINE OF CODE
+     TO GET THE CORRELATION MATRIX GOES HERE
+###
+
+# Generate a mask for the upper triangle
+mask = np.zeros_like(corr, dtype=np.bool)
+mask[np.triu_indices_from(mask)] = True
+
+# Set up the matplotlib figure
+f, ax = plt.subplots(figsize=(11, 9))
+
+# Generate a custom diverging colormap
+cmap = sns.diverging_palette(220, 10, as_cmap=True)
+
+# Draw the heatmap with the mask and correct aspect ratio
+sns.heatmap(YOUR_CORRELATION_MATRIX_VARIABLE_HERE,
+           mask=mask, cmap=cmap, vmax=.3, center=0,
+           square=True, annot=True,
+           linewidths=.5, cbar_kws={&quot;shrink&quot;: .5})
+</code></pre></li>
+</ul>
+
+<p>&#167;  Cluster the clean data using the Expectation Maximization algorithm via <a href="http://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html#sklearn.mixture.GaussianMixture"><code>sklearn.mixture.GaussianMixture</code></a>.  You can use the defaults except change the <code>n_inits</code> parameter to 10 and set the number of clusters to 5.  We will explore the clusters in your results &ndash; please provide <em>evidence</em> for all of your answers in the form of the actual data from your clusters.</p>
+
+<ul>
+<li>What are the <strong>sizes of each of the 5 clusters</strong> (in total count per cluster)?</li>
+<li>What are the <strong>most frequent property type</strong> (e.g. <code>BUILDING CLASS CATEGORY</code>) in your largest cluster?</li>
+<li>What about the <strong>average prices in each cluster</strong>?</li>
+<li>What is the <strong>ratio of <code>SALE PRICE</code> to <code>GROSS SQUARE FOOTAGE</code></strong>?</li>
+</ul>
+
+<p>&#167;  Cluster the clean data using Agglomerative clustering with <a href="http://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html#sklearn.cluster.AgglomerativeClustering"><code>sklearn.cluster.AgglomerativeClustering</code></a>.  Set the <code>n_clusters=5</code>, default linkage  to <code>linkage='complete'</code> and the <code>affinity='cosine'</code>.</p>
+
+<ul>
+<li>What is the <strong>median gross square footage</strong> in each cluster?</li>
+<li>Compare the <strong>most frequent property types</strong> with those found with the EM algorithm.  What are the differences?</li>
+<li>What is the <strong>ratio of <code>RESIDENTIAL UNITS</code> to <code>COMMERCIAL UNITS</code></strong> per cluster?</li>
+</ul>
+
+<p>&#167;  Please turn in all your code and notebooks with your exploration and output.</p>
+
+</main>
+
+  <footer>
+  <script src="//yihui.name/js/math-code.js"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script async src="//yihui.name/js/center-img.js"></script>
+
+  
+
+  </footer>
+  </body>
+</html>
+
