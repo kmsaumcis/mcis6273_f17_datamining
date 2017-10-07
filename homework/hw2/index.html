@@ -39,7 +39,10 @@
 <main>
 
 
-<h1 id="mcis6273-data-mining-fall-2017-hw2">MCIS6273 Data Mining / Fall 2017 / HW2</h1>
+<pre><code class="language-python">
+</code></pre>
+
+<h1 id="mcis6273-data-mining-prof-maull-fall-2017-hw2">MCIS6273 Data Mining (Prof. Maull) / Fall 2017 / HW2</h1>
 
 <p><strong>This assignment is worth up to 20 POINTS to your grade total if you complete it on time.</strong></p>
 
@@ -74,7 +77,7 @@
 
 <li><p>SUMMARIZE AND DESCRIBE:   Work with Pandas and Scikit to describe and  summarize the statistical features of a real world dataset</p></li>
 
-<li><p>EXPLORE AND VISUALIZE:   Work with Scikit to do exploratory data analysis on a real world dataset looking correlation relationships and clustering</p></li>
+<li><p>EXPLORE AND VISUALIZE:   Work with Scikit to do exploratory data analysis on a real world dataset looking into correlation relationships and clustering</p></li>
 </ul>
 
 <h2 id="what-to-turn-in">WHAT TO TURN IN</h2>
@@ -96,7 +99,7 @@ with the answers to the questions labeled with the &#167; sign.</p>
 <p>We will continue to practice preprocessing data, except this time with a much larger dataset than last time &ndash; get the coolers and heat sinks in your machines prepared.
 Real world data usually requires <strong>sanitizing</strong> of some sort &ndash; indeed it is very rare to be given a dataset that is entirely pristine unless the preprocessing was already done.  <em>Dirty data</em>, so to speak, is still an important activity for data scientists, data engineerings and machine learning engineers alike.
 The dataset for this task is a <a href="https://www.kaggle.com/new-york-city/nyc-property-sales/data">Kaggle dataset</a> that provides real estate transactions in New York City from 2016 and 2017 &ndash; these are <em>actual transactions</em> and this is a remarkably interesting dataset.  As before, we will need to cleanse the data and prepare it so that it is in a condition that can be used by the Sklearn estimators (we&rsquo;ll be doing some clustering in the last part of this assignment).  You are free to download the dataset (account required) or obtain it from the course Github repo.  You are also encouraged to see <a href="https://www.kaggle.com/new-york-city/nyc-property-sales/kernels">what others are doing with this dataset</a> and if you learn something useful &hellip; perhaps it will be valuable in completing your homework!
-NOTE: before you being part 2 (<strong>summarize and describe</strong>), make sure all numeric data is forced to numeric (use <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.to_numeric.html#pandas.to_numeric"><code>pd.to_numeric()</code></a>  and set <code>errors='coerce'</code>).
+NOTE: before you begin part 2 (<strong>summarize and describe</strong>), make sure all numeric data is forced to numeric (use <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.to_numeric.html#pandas.to_numeric"><code>pd.to_numeric()</code></a>  and set <code>errors='coerce'</code>).
 There are 5 tasks that will be required to do the rest of the homework (parts 2 and 3).</p>
 
 <p>&#167;  Load the dataset into a DataFrame and make sure all columns are numeric data, except for those indicated.  You will need to use the <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.to_numeric.html"><code>Pandas.to_numeric()</code></a> on everything <strong>except</strong> <code>NEIGHBORHOOD</code>, <code>BUILDING CLASS CATEGORY</code>, <code>TAX CLASS AT PRESENT</code>, <code>TAX CLASS AT TIME OF SALE</code>, <code>BUILDING CLASS AT TIME OF SALE</code> and <code>SALE DATE</code>.</p>
@@ -104,19 +107,19 @@ There are 5 tasks that will be required to do the rest of the homework (parts 2 
 <p>&#167;  Drop data columns as indicated:</p>
 
 <ul>
-<li>Drop all data values for which <code>SALE PRICE</code> is less than 1000 (e.g. <code>SALE PRICE=1000</code>).</li>
-<li>Drop the entire <code>EASE-MENT</code> column.</li>
-<li>Drop the <code>ADDRESS</code> column.  NOTE:  You will need to make note of the address / index if you decide to do the bonus part (so read it before you drop, if you&rsquo;d like to do the bonus).
+<li><p>Drop all data values for which <code>SALE PRICE</code> is less than 1000 (e.g. <code>SALE PRICE=1000</code>).</p></li>
 
-<ul>
-<li>Drop any properties with a <code>SALE YEAR &lt; 1600</code>.</li>
-</ul></li>
+<li><p>Drop the entire <code>EASE-MENT</code> column.</p></li>
+
+<li><p>Drop the <code>ADDRESS</code> column.  NOTE:  You will need to make note of the address / index if you decide to do the bonus part (so read it before you drop, if you&rsquo;d like to do the bonus).</p></li>
 </ul>
 
 <p>&#167;  Perform the following adjustments:</p>
 
 <ul>
-<li>Impute all <code>YEAR BUILT</code> data using the <a href="http://scikit-learn.org/stable/modules/preprocessing.html#imputation-of-missing-values"><code>sklearn.preprocessing.Imputer</code></a>.  You can just use the median.</li>
+<li><p>Impute all <code>YEAR BUILT</code> data using the <a href="http://scikit-learn.org/stable/modules/preprocessing.html#imputation-of-missing-values"><code>sklearn.preprocessing.Imputer</code></a>.  You can just use the median.</p></li>
+
+<li><p>also drop any properties with a <code>YEAR BUILT &lt; 1600</code></p></li>
 
 <li><p>Use the function</p>
 
@@ -143,19 +146,25 @@ df_clean[columns] = data
 </ul></li>
 </ul>
 
-<p>&#167;  Convert, binarize and scale the date as indicated:</p>
+<p>&#167;  Final clean and save,the date as indicated:</p>
+
+<ul>
+<li><p>convert all <code>NaN</code> data to <code>0</code>.</p></li>
+
+<li><p>strip and remove whitespace from any remaining columns that have text.  You can use any method you want, but the <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.str.strip.html#pandas.Series.str.strip"><code>Series.str.strip()</code></a> method might be of help.</p></li>
+
+<li><p>store the un-normalized, un-binarized file as <code>nyc_data_clean_unscaled.csv</code></p></li>
+</ul>
+
+<p>&#167;  Binarize, scale and store the scaled DataFrame</p>
 
 <ul>
 <li><p>binarized the data &ndash; you are free to use the very convenient <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.get_dummies.html#pandas.get_dummies"><code>Pandas.get_dummies()</code></a> or reuse any code you produced from the last exercise.</p></li>
 
 <li><p>scale the data using <a href="http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.minmax_scale.html#sklearn.preprocessing.minmax_scale">minmax scaling</a>, so all data values are in the entire dataset are between 0 and 1.</p></li>
 
-<li><p>convert all <code>NaN</code> data to <code>0</code>.</p></li>
-
-<li><p>strip and remove whitespace from any remaining columns that have text.  You can use any method you want, but the <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.str.strip.html#pandas.Series.str.strip"><code>Series.str.strip()</code></a> method might be of help.</p></li>
+<li><p>store the scaled dataset back as a CSV object (see HW0) and make sure this is turned in with your homework submission!  You can name the file <code>nyc_data_clean_scaled.csv</code>.</p></li>
 </ul>
-
-<p>&#167;  Store the cleaned DataFrame back as a CSV object (see HW0) and make sure this is turned in with your homework submission!  You can name the file <code>nyc_data_clean.csv</code>.</p>
 
 <p>&#167;  <strong>OPTIONAL BONUS WORTH UP TO 10 EXTRA CREDIT POINTS:</strong> Get a free API key and use the <a href="http://www.geonames.org/export/ws-overview.html">GeoNames API</a> to improve the data set, by adding a <code>lat</code> and <code>lon</code> coordinates to every property (using the address lookup). NOTE: the API limit is 20K calls for the day, so you will need to run this over several 24 hour periods between API limits (or use multiple accounts, or whatever).  For the <strong>first</strong> student who <em>creates this dataset and makes it public on their Github account</em> (and shares it with me or your classmates), I will offer you a <strong>total of 10 extra credit points</strong> that will be applied to your homework total for the course.  Varying levels of completeness toward that goal will earn some points less than 10.</p>
 
@@ -166,8 +175,9 @@ df_clean[columns] = data
 <p>&#167;  Group the properties <strong>by zipcode</strong> in the clean dataset.</p>
 
 <ul>
-<li>What  are the  <strong>top 5 zipcodes with the largest total number of properties for sale</strong> (ignore property type for now).</li>
-<li>What boroughs are these zip codes in?  You can inspect the dataset directly (go back to the Kaggle page for this dataset to see which code maps to the borough), use your favorite search engine to look up the zipcodes, or even use <a href="http://www.geonames.org/postal-codes/">Geonames postal code lookup</a>.</li>
+<li><p>What  are the  <strong>top 5 zipcodes with the largest total number of properties for sale</strong> (ignore property type for now).</p></li>
+
+<li><p>What boroughs are these zip codes in?  You can inspect the dataset directly (go back to the Kaggle page for this dataset to see which code maps to the borough), use your favorite search engine to look up the zipcodes, or even use <a href="http://www.geonames.org/postal-codes/">Geonames postal code lookup</a>.</p></li>
 </ul>
 
 <p>&#167;  Using the data from above, grouped by zipcode:</p>
@@ -177,18 +187,20 @@ df_clean[columns] = data
 <li>What is the <strong>median sale price</strong> of that same borough?</li>
 </ul>
 
-<p>&#167;  We talked about correlation in the lectures and now we&rsquo;re going to explore that more.  Correlation can be accessed via a number of mechanisms, the primary of which is using Pandas <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.corr.html#pandas.DataFrame.corr()"><code>DataFrame.corr()</code></a> which produces a matrix representation of the correlations among numeric variables in your data.  You can also use the <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.corrcoef.html"><code>numpy.corrcoef()</code></a> which also allows you to compare single <em>numeric</em> features against one another.  Both use the Pearson&rsquo;s correlation as we talked about in class.  <strong>Compute the correlation matrix</strong> using either method above.</p>
+<p>&#167;  We talked about correlation in the lectures and now we&rsquo;re going to explore that more.  Correlation can be accessed via a number of mechanisms, the primary of which is using Pandas <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.corr.html#pandas.DataFrame.corr()"><code>DataFrame.corr()</code></a> which produces a matrix representation of the correlations <em>among numeric variables</em> in your data.  You can also use the <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.corrcoef.html"><code>numpy.corrcoef()</code></a> which also allows you to compare single <em>numeric</em> features against one another.  Both use the Pearson&rsquo;s correlation as we talked about in class.  <strong>Compute the correlation matrix</strong> using either method above.</p>
 
 <ul>
-<li>Which features are <strong>mostly highly correlated</strong>?</li>
-<li>Do the highly correlated <strong>features make sense</strong> to you?  Please provide a sentence of two of your reasons why or why not.</li>
+<li><p>Which features are <strong>mostly highly correlated</strong>?</p></li>
+
+<li><p>Do the highly correlated <strong>features make sense</strong> to you?  Please provide a sentence of two of your reasons why or why not.</p></li>
 </ul>
 
 <p>&#167;  Filter the data to just those residential properties sold since 2005 (filter such that <code>RESIDENTIAL UNITS &gt; 0 &amp; COMMERCIAL UNITS &lt;= 0</code>):</p>
 
 <ul>
-<li>What borough has the <strong>largest number of new(er) properties</strong> sold?</li>
-<li>What was the <strong>mean and median price for each borough</strong>?</li>
+<li><p>What borough has the <strong>largest number of new(er) properties</strong> sold?</p></li>
+
+<li><p>What was the <strong>mean and median price for each borough</strong>?</p></li>
 </ul>
 
 <p>&#167;  Group properties by month and year.</p>
@@ -197,7 +209,7 @@ df_clean[columns] = data
 <li>Create a line <strong>plot of sales volume by month</strong> (HINT: aggregate by month) for 2016 only.  You may ignore 2017 properties for now.  The $x$ axis will be the month and $y$ axis the volume (count).</li>
 </ul>
 
-<h3 id="60-explore-and-visualize-work-with-scikit-to-do-exploratory-data-analysis-on-a-real-world-dataset-looking-correlation-relationships-and-clustering">(60%) EXPLORE AND VISUALIZE:   Work with Scikit to do exploratory data analysis on a real world dataset looking correlation relationships and clustering</h3>
+<h3 id="60-explore-and-visualize-work-with-scikit-to-do-exploratory-data-analysis-on-a-real-world-dataset-looking-into-correlation-relationships-and-clustering">(60%) EXPLORE AND VISUALIZE:   Work with Scikit to do exploratory data analysis on a real world dataset looking into correlation relationships and clustering</h3>
 
 <p>We will finish this exercise by exploring relationships, visualizing correlations and looking at using unsupervised clustering algorithms available in Scikit.</p>
 
@@ -207,7 +219,7 @@ df_clean[columns] = data
 <li><p>Use this boilerplate code <strong>and turn in the heatmap for all numeric variables in your dataset</strong></p>
 
 <pre><code class="language-python">%matplotlib inline
-import numpy as np
+import numpy as npa
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
