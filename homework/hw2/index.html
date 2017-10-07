@@ -117,9 +117,8 @@ There are 5 tasks that will be required to do the rest of the homework (parts 2 
 <p>&#167;  Perform the following adjustments:</p>
 
 <ul>
-<li><p>Impute all <code>YEAR BUILT</code> data using the <a href="http://scikit-learn.org/stable/modules/preprocessing.html#imputation-of-missing-values"><code>sklearn.preprocessing.Imputer</code></a>.  You can just use the median.</p></li>
-
-<li><p>also drop any properties with a <code>YEAR BUILT &lt; 1600</code></p></li>
+<li>Impute all <code>YEAR BUILT</code> data using the <a href="http://scikit-learn.org/stable/modules/preprocessing.html#imputation-of-missing-values"><code>sklearn.preprocessing.Imputer</code></a>.  You can just use the median.</li>
+<li>also drop any properties with a <code>YEAR BUILT &lt; 1600</code></li>
 
 <li><p>Use the function</p>
 
@@ -156,10 +155,10 @@ df_clean[columns] = data
 <li><p>store the un-normalized, un-binarized file as <code>nyc_data_clean_unscaled.csv</code></p></li>
 </ul>
 
-<p>&#167;  Binarize, scale and store the scaled DataFrame</p>
+<p>&#167;  Binarize, scale and store the scaled DataFrame:</p>
 
 <ul>
-<li><p>binarized the data &ndash; you are free to use the very convenient <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.get_dummies.html#pandas.get_dummies"><code>Pandas.get_dummies()</code></a> or reuse any code you produced from the last exercise.</p></li>
+<li><p>binarize the data &ndash; you are free to use the very convenient <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.get_dummies.html#pandas.get_dummies"><code>Pandas.get_dummies()</code></a> or reuse any code you produced from the last exercise.</p></li>
 
 <li><p>scale the data using <a href="http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.minmax_scale.html#sklearn.preprocessing.minmax_scale">minmax scaling</a>, so all data values are in the entire dataset are between 0 and 1.</p></li>
 
@@ -170,7 +169,7 @@ df_clean[columns] = data
 
 <h3 id="25-summarize-and-describe-work-with-pandas-and-scikit-to-describe-and-summarize-the-statistical-features-of-a-real-world-dataset">(25%) SUMMARIZE AND DESCRIBE:   Work with Pandas and Scikit to describe and  summarize the statistical features of a real world dataset</h3>
 
-<p>Now that we have a clean dataset, we will continue to practice describing it.  Here we will look at the <strong>cleaned</strong> version from the <strong>CLEAN AND PREPARE</strong> step above.  Answer the following questions based on that clean dataset.</p>
+<p>Now that we have a clean dataset, we will continue to practice describing it.  Here we will look at the <strong>unscaled, unbinarized, cleaned</strong> version from the <strong>CLEAN AND PREPARE</strong> step above.  Answer the following questions based on that clean dataset.</p>
 
 <p>&#167;  Group the properties <strong>by zipcode</strong> in the clean dataset.</p>
 
@@ -250,16 +249,21 @@ sns.heatmap(YOUR_CORRELATION_MATRIX_VARIABLE_HERE,
 </code></pre></li>
 </ul>
 
-<p>&#167;  Cluster the clean data using the Expectation Maximization algorithm via <a href="http://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html#sklearn.mixture.GaussianMixture"><code>sklearn.mixture.GaussianMixture</code></a>.  You can use the defaults except change the <code>n_inits</code> parameter to 10 and set the number of clusters to 5.  We will explore the clusters in your results &ndash; please provide <em>evidence</em> for all of your answers in the form of the actual data from your clusters.</p>
+<p>&#167;  Cluster the <strong>scaled, binarized, clean</strong> data using the Expectation Maximization algorithm via <a href="http://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html#sklearn.mixture.GaussianMixture"><code>sklearn.mixture.GaussianMixture</code></a>.  You can use the defaults except change the <code>n_inits</code> parameter to 10 and set the number of clusters to 5.  We will explore the clusters in your results &ndash; please provide <em>evidence</em> for all of your answers in the form of the actual data from your clusters.</p>
+
+<p>To retrieve the original values of the data, you have two choices.  You can simply unscale the data (use minmax in <em>reverse</em>) or you can keep track of the index and reference the data from the unscaled clean dataset (both datasets will be the same in terms of their indices).  You will need to perform this trick on <em>both</em> clustering tasks.</p>
 
 <ul>
-<li>What are the <strong>sizes of each of the 5 clusters</strong> (in total count per cluster)?</li>
-<li>What are the <strong>most frequent property type</strong> (e.g. <code>BUILDING CLASS CATEGORY</code>) in your largest cluster?</li>
-<li>What about the <strong>average prices in each cluster</strong>?</li>
-<li>What is the <strong>ratio of <code>SALE PRICE</code> to <code>GROSS SQUARE FOOTAGE</code></strong>?</li>
+<li><p>What are the <strong>sizes of each of the 5 clusters</strong> (in total count per cluster)?</p></li>
+
+<li><p>What is  the <strong>most frequent property type</strong> (e.g. <code>BUILDING CLASS CATEGORY</code>) in your largest cluster?</p></li>
+
+<li><p>What about the <strong>average prices in each cluster</strong>?</p></li>
+
+<li><p>What is the <strong>ratio of <code>SALE PRICE</code> to <code>GROSS SQUARE FOOTAGE</code></strong> (use the unscaled data for the ratio)?</p></li>
 </ul>
 
-<p>&#167;  Cluster the clean data using Agglomerative clustering with <a href="http://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html#sklearn.cluster.AgglomerativeClustering"><code>sklearn.cluster.AgglomerativeClustering</code></a>.  Set the <code>n_clusters=5</code>, default linkage  to <code>linkage='complete'</code> and the <code>affinity='cosine'</code>.</p>
+<p>&#167;  Cluster the <strong>scaled, binarized, clean</strong> data using Agglomerative clustering with <a href="http://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html#sklearn.cluster.AgglomerativeClustering"><code>sklearn.cluster.AgglomerativeClustering</code></a>.  Set the <code>n_clusters=5</code>, default linkage  to <code>linkage='complete'</code> and the <code>affinity='cosine'</code>.</p>
 
 <ul>
 <li>What is the <strong>median gross square footage</strong> in each cluster?</li>
