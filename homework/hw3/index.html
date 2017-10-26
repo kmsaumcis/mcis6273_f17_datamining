@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> | MCIS6273 | Data Mining | Fall 2017</title>
+    <link rel="stylesheet" href="/mcis6273_f17_datamining/css/style.css" />
+    <link rel="stylesheet" href="/mcis6273_f17_datamining/css/fonts.css" />
+    <style>
+@import url('https://fonts.googleapis.com/css?family=Fanwood+Text:400,400i|Faustina:400,400i,600,600i|Libre+Baskerville|Lora:400,400i,700,700i|Merriweather:400,400i,700,700i|Old+Standard+TT|Open+Sans:400,400i,700,700i|Playfair+Display|Radley|Spectral:400,400i,600,600i,700,700i');
+</style>
+
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/mcis6273_f17_datamining">Home</a></li>
+      
+      <li><a href="/mcis6273_f17_datamining/syllabus/">Syllabus</a></li>
+      
+      <li><a href="/mcis6273_f17_datamining/homework/">Homework</a></li>
+      
+      <li><a href="/mcis6273_f17_datamining/notes/">Lecture Notes</a></li>
+      
+      <li><a href="/mcis6273_f17_datamining/index.xml">Subscribe</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+<div class="article-meta">
+<h1><span class="title"></span></h1>
+
+
+</div>
+
+<main>
+
+
+<h1 id="mcis6273-data-mining-prof-maull-fall-2017-hw3">MCIS6273 Data Mining (Prof. Maull) / Fall 2017 / HW3</h1>
+
+<p><strong>This assignment is worth up to 20 POINTS to your grade total if you complete it on time.</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Points <br/>Possible</th>
+<th align="center">Due Date</th>
+<th align="center">Time Commitment <br/>(estimated)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">20</td>
+<td align="center">Monday, Nov 6 @ Midnight</td>
+<td align="center"><em>up to</em> 12 hours</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li><p><strong>GRADING:</strong> Grading will be aligned with the completeness of the objectives.</p></li>
+
+<li><p><strong>INDEPENDENT WORK:</strong> Copying, cheating, plagiarism  and academic dishonesty <em>are not tolerated</em> by Univerisity or course policy.  Please see the syllabus for the full departmental and University statement on the academic code of honor.</p></li>
+</ul>
+
+<h2 id="objectives">OBJECTIVES</h2>
+
+<ul>
+<li><p>RESUBMIT HW2 PARTS 2 AND 3 (OPTIONAL):   Resubmit HW2 if you did not complete it</p></li>
+
+<li><p>BUILD A DECISION TREE CLASSIFIER:   Work with Pandas and Scikit to build a decision tree classifier on a real world dataset</p></li>
+
+<li><p>BUILD A BAYESIAN CLASSIFIER:   Work with Pandas and Scikit to explore the statistical features of a real world dataset using Bayesian classification</p></li>
+</ul>
+
+<h2 id="what-to-turn-in">WHAT TO TURN IN</h2>
+
+<p>You are being encouraged to turn the assignment in using the provided
+Jupyter Notebook.  To do so, clone
+<a href="https://github.com/kmsaumcis/mcis6273_f17_datamining">the course repository</a> and modify
+the <code>hw3.ipynb</code> file in the <code>homework/hw3</code> directory.  If you do not know
+how to do this, please ask, or visit one of the many tutorials out there
+on the basics of using Github and cloning repositories.</p>
+
+<p>Turn in a copy of a <code>.ipynb</code> file, a PDF or Word Document to Blackboard
+with the answers to the questions labeled with the &#167; sign.</p>
+
+<h2 id="assignment-tasks">ASSIGNMENT TASKS</h2>
+
+<h3 id="0-resubmit-hw2-parts-2-and-3-optional-resubmit-hw2-if-you-did-not-complete-it">(0%) RESUBMIT HW2 PARTS 2 AND 3 (OPTIONAL):   Resubmit HW2 if you did not complete it</h3>
+
+<p>You can resubmit HW2 (parts 2 and 3 only) if you did not complete.  If you completed it and would like to resubmit a revised version of your homework, you are free to do so.  The resubmission of part 1 will have the usual penalty, while here is <strong>no</strong> penalty for parts 2 and 3.</p>
+
+<p>&#167;  Review HW2 and resumbit your work if necessary.</p>
+
+<h3 id="50-build-a-decision-tree-classifier-work-with-pandas-and-scikit-to-build-a-decision-tree-classifier-on-a-real-world-dataset">(50%) BUILD A DECISION TREE CLASSIFIER:   Work with Pandas and Scikit to build a decision tree classifier on a real world dataset</h3>
+
+<p>Continuing our work with classification, we&rsquo;re going to work with decision trees and use the <a href="http://scikit-learn.org/stable/modules/tree.html#classification">decision tree classification</a>         tools in <code>sklearn</code>.   As we talked about in lecture, decision         trees are highly desireable for their interpretability.  It is often very easy to understand how a classification is performed and it is also very easy to use features of mixed types and avoid <strong>some</strong> (though not all) of the pre-processing work we labored through in the prior exercise, where data preparation was paramount.</p>
+
+<p>The dataset for this task adapted from yet another a <a href="https://www.kaggle.com/shivam2503/diamonds/data">Kaggle dataset</a> that provides a large number of details about diamonds for sale.  The dataset is nearly 54K rows of data with 10 features, but I have enhanced it for this assignment, so you will use the [file on Github]() for the actual assignment I am asking you to do.</p>
+
+<p>If you are unfamiliar with the features of diamonds <a href="https://www.gia.edu/diamond-quality-factor">please read this very informative article</a> from the  <a href="https://www.gia.edu/">Gemological Institute of America</a> (GIA), which should familiarize you with some of the details of the attributes &ndash; though understanding all these details is certainly not critical for completing the exercise.</p>
+
+<p>You are a data scientist for the diamond company, Sparkling Gems Inc., and you are trying to sell diamonds to one of the most prolific buyers on the market, Mr. Dirk Diamond.  Mr. Dirk buys and sells millions of dollars worth of diamonds and if we know what his rules are, we might be able to improve our sales to him and hence our own profitablity.  Someone in the industry has found a notebook of thousands of Dirk&rsquo;s purchasing decisions in the last few years which include the details of diamonds he has accepted and rejects for purchase.</p>
+
+<p>What we believe is if we can replicate his <code>ACCEPT</code> and <code>REJECT</code> criteria, then we might be able to find diamonds within our own inventory to sell to Mr. Dirk.  To determine if we can capture his rules, we have 2000 diamonds that he has accepted and rejected (roughly split down the middle).</p>
+
+<p>You are to take those decisions he&rsquo;s made and build a binary decision tree classifier.  Split the data into a test and training set, build the classifier from the training set and test it on the remaining test set.</p>
+
+<p>&#167;  Load the dataset of 2000 diamonds into a DataFrame and build a training set of 1400 diamonds.  Leave the remaining diamonds alone as a test set &ndash; you will notice we&rsquo;re going to use a <sup>70</sup>&frasl;<sub>30</sub> split.  You can save a lot of time by using <a href="http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html"><code>sklearn.model_selection.train_test_split()</code></a>, but you are free to write you own code to do the same. You will need to eliminate the column <code>0\: Unnamed</code> as it contains an index value from the original file that you will not need.</p>
+
+<p>&#167;  Use the <a href="http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html"><code>sklearn.tree.DecisionTreeClassifier</code></a> class to build a decision tree classifier.  You can use the defaults for now (e.g. you can keep the default <code>criteria='gini'</code>).  To do this, you will need to use the following pattern:
+  * take the training set DataFrame and split into a <em>features</em> and <em>labels</em> DatatFrame, where features is the $n \times m$ matrix where $m$ is the number of features and $n$ the number of training samples, and <em>labels</em> is an $n \times 1$ matrix of just the label for the corresponding sample.
+  * use the decision classifier with the <em>features</em> as the <code>X</code> parameter and <em>labels</em> as the <code>y</code> parameter
+  * <strong>NOTE:</strong> unfortunately, and as you learned in prior tasks, <code>sklearn</code> does not support text labels and so you will need to convert the <code>color</code>, <code>clarity</code> and <code>cut</code> variables to numeric (ordinal) variables.  The easiest way to do this is with <a href="http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html"><code>sklearn.preprocessing.LabelEncoder().fit_transform()</code></a></p>
+
+<p>&#167;  Use the <a href="http://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html"><code>sklearn.metrics.classification_report()</code></a> to build the classification report that shows the precison, recall and f-score of the classifier.</p>
+
+<p>&#167;  Draw the decision tree for this classifier.  To do this you will need to install graphviz in Anaconda.  Please follow instructions found on <a href="http://scikit-learn.org/stable/modules/tree.html">this page</a>.  To draw the tree, once the package is installed, use <a href="http://scikit-learn.org/stable/modules/generated/sklearn.tree.export_graphviz.html">sklearn.tree.export_graphiz</a> as shown in the example on the instruction page.  Make sure the tree shows up in your notebook and also export the file to PNG so I can have a separate digital copy of it.  Make sure you attach this to your submission.</p>
+
+<p>&#167;  Do you feel you have built a good classifier?  Why or why not?  Please use the evidence from the prior questions when answering this question.</p>
+
+<p>&#167;  Now that you have a classifier for Mr. Dirk, use the file <a href="./data/sgi_diamond_inventory.csv"><code>./data/sgi_diamond_inventory.csv</code></a> to classify Sparkling Gem&rsquo;s inventory. Find all the diamonds that are classified <code>ACCEPT</code> by your classifiers.  You are free to rework the parameters of your decision tree if you think you can reduce the classification errors.
+* export the data to a CSV file called <code>mr_dirk_inventory.csv</code> and make sure you attach this to your final submission.
+* what is the <em>gross total sale amount</em> if we were to sell all these diamonds to Mr. Dirk?</p>
+
+<p>&#167;  <strong>[OPTIONAL BONUS]</strong> <em>Completing this question will earn you 2 bonus points</em>. Pricing diamonds is tricky business, but Mr. Dirk is always one step ahead of most sellers.  He&rsquo;s very astute and most often likes to buy diamonds according to Tavernier&rsquo;s law (see <a href="https://en.wikipedia.org/wiki/Diamonds_as_an_investment">this resource</a>) for details.  Effectively, let $C$ be the <em>mean price</em> of a 1 carat diamond, then Tavernier&rsquo;s Law ($\tau$) is calculated as
+$$ \tau = W^2 \times C$$
+where $W$ is the weight of the diamond in carats.  Please <strong>provide evidence</strong> for whether you think your diamond prices are more or less attractive to Mr. Dirk.</p>
+
+<h3 id="50-build-a-bayesian-classifier-work-with-pandas-and-scikit-to-explore-the-statistical-features-of-a-real-world-dataset-using-bayesian-classification">(50%) BUILD A BAYESIAN CLASSIFIER:   Work with Pandas and Scikit to explore the statistical features of a real world dataset using Bayesian classification</h3>
+
+<p>In this part of the assignment you will build a relatively simple Bayesian classifier.  The data we will be using comes from a subset of a large US Department of Transportation dataset of over 7M records <a href="https://www.kaggle.com/jboysen/us-traffic-2015/data">which you can optionally explore here</a>.  The data represents traffic volume from various places around the US, captured hourly for each day of data collection.  The dataset we have is a sample of less than 10% of the original data, and we&rsquo;ll restrict that further to capture just over 100K data points.</p>
+
+<p>The DOT needs to understand traffic patterns, but in particular wants to understand the traffic patterns in urban areas.  What they&rsquo;d like to do is build a classifier that, given a series of volume counts, can give the day of the week.  In other words given a data point representing the volume counts by hour, provide the day of the week.  The primary reason for building such a classifier is that some of the station data is not collecting day of week or has become unreliable.  Thus, they plan to use the reliable data to classify the missing and unreliable data as a quality control check.  They will keep the classifier that cam achieve results above $0.80$.</p>
+
+<p>Recall, the setup of our Bayesian problem, we want to find the classifier which given data $d$ about the volume counts, we can produce the day of the week or:
+  $$ \Pr(C \big| d_1, \ldots, d<em>j) = \Pr&copy; \prod</em>{i=0}^n \Pr(  d_i \big| C )$$
+where $C$ is the day of the week and $d_j$ the traffic volume counts for the given time window in 1 hour increments over 24 hours.  Now we talked about how Naive Bayes works best in the context of discrete features, but <code>sklearn</code> provides a Bayes classifier over continuous features assumed to be Gaussian.  This assumption, while not strictly true, can be practically used in large datasets.  We will be using this classifier in the assignment.  Our probabilities are then computed as such:</p>
+
+<p>$$ \Pr(  d_i \big| C ) = \frac{1}{\sqrt{2\pi\sigma_C^2}} \exp \big(-\frac{(x_i - \mu_C)^2}{2 \sigma_C^2}\big)$$</p>
+
+<p>To perform this task will require you to train the classifier on some labeled data, test it, then use the provided unlabelled set to classify the day of week on unseen data.</p>
+
+<p>&#167;  Prepare the dataset that is to include <strong>only</strong> the traffic volume data where the <code>functional_classification_name</code> is <code>Urban: Principal Arterial - Interstate</code> since we want to make classifications only on urban interstate data.  Use the file <a href="data/dot_testtrain.csv"><code>data/dot_testtrain.csv</code></a>.</p>
+
+<p>&#167;  Plot the bar chart of traffic volume by day of week for the following three times <code>traffic_volume_counted_after_0700_to_0800</code>, <code>traffic_volume_counted_after_2000_to_2100</code>, <code>traffic_volume_counted_after_1500_to_1600</code>.  That is group by <code>day_of_week</code> and plot the data in a single chart using <code>DataFrame.plot(kind='bar')</code> as in prior homeworks.</p>
+
+<p>&#167;  Build the classifier over the <code>data/dot_testtrain.csv</code>, creating a <sup>70</sup>&frasl;<sub>30</sub> split of the data as in the prior exercise.  You will need to use the <a href="http://scikit-learn.org/stable/modules/naive_bayes.html#gaussian-naive-bayes"><code>sklearn.naive_bayes.GaussianNB</code></a>.  Train the data on 70%, test on the remaining 30%.
+  * What is the overall classifier accuracy?  Show your code.</p>
+
+<p>&#167;  Now that you have a classifier, load the data in <a href="data/dot_validate.csv"><code>data/dot_validate</code></a> and run your classifier on the data.  Add the class label back to the unlabeled DataFrame onto a column <code>nb_classifier_label</code> and save the file back as <code>dot_validate_labeled.csv</code>.  Make sure you attach the file to your submission.</p>
+
+<p>&#167;  The DOT stakeholder would like to know whether you achieved the desired result of $0.80$ accuracy.  Did you achieve this with your classifier?  Explain with the appropriate level of evidence.  Produce a classification report and show the precision, recall and f1-score as well.</p>
+
+<p>&#167;  <strong>[OPTIONAL BONUS]</strong>: <em>Doing this bonus can earn you up to 5 extra points varying on completeness and correctness of your effort</em>.  Train the classifier to classify <code>functional_classification_name</code>.  That is, the class you&rsquo;re trying to predict is the <code>functional_classification_name</code>.  You are free to add back in the <code>day_of_week</code> should you find it useful and you should add back in all the other data (use the full data file and not just the urban data as above).  You will, of course, need to remove <code>functional_classification_name</code> as it is the class you&rsquo;re trying to predict.</p>
+
+</main>
+
+  <footer>
+  <script src="//yihui.name/js/math-code.js"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script async src="//yihui.name/js/center-img.js"></script>
+
+  
+
+  </footer>
+  </body>
+</html>
+
