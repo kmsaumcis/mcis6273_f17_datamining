@@ -101,7 +101,7 @@ with the code or answers to the questions /tasks labeled with the &#167; sign.</
 
 <p>Continuing our work with classification, we&rsquo;re going to work with decision trees and use the <a href="http://scikit-learn.org/stable/modules/tree.html#classification">decision tree classification</a>         tools in <code>sklearn</code>.   As we talked about in lecture, decision         trees are highly desireable for their interpretability.  It is often very easy to understand how a classification is performed and it is also very easy to use features of mixed types and avoid <strong>some</strong> (though not all) of the pre-processing work we labored through in the prior exercise, where data preparation was paramount.</p>
 
-<p>The dataset for this task is adapted from yet another a <a href="https://www.kaggle.com/shivam2503/diamonds/data">Kaggle dataset</a> that provides a large number of details about real diamonds for sale.  The dataset is nearly 54K rows of data with 10 features, but I have enhanced it for this assignment, so you will use the [file on Github]() for the actual task I am asking you to do in this assignment.</p>
+<p>The dataset for this task is adapted from yet another a <a href="https://www.kaggle.com/shivam2503/diamonds/data">Kaggle dataset</a> that provides a large number of details about real diamonds for sale.  The dataset is nearly 54K rows of data with 10 features, but I have enhanced it for this assignment, so you will use the <a href="https://github.com/kmsaumcis/mcis6273_f17_datamining/blob/master/homework/hw3/data/diamonds_dirk_accept-reject.csv">file on Github</a> for the actual task I am asking you to do in this assignment.</p>
 
 <p>If you are unfamiliar with the features of diamonds <a href="https://www.gia.edu/diamond-quality-factor">please read this very informative article</a> from the  <a href="https://www.gia.edu/">Gemological Institute of America</a> (GIA), which should introduce you to some of the details of the attributes &ndash; though understanding all these details is certainly not critical for completing the exercise, and is merely for your personal edification.</p>
 
@@ -127,7 +127,7 @@ with the code or answers to the questions /tasks labeled with the &#167; sign.</
 
 <p>&#167;  Do you feel you have built a good classifier?  Why or why not?  Please use the evidence from the prior questions when answering this question.</p>
 
-<p>&#167;  Now that you have a classifier for Mr. Dirk, use the file <a href="./data/sgi_diamond_inventory.csv"><code>./data/sgi_diamond_inventory.csv</code></a> to classify Sparkling Gem&rsquo;s inventory. Find all the diamonds that are classified <code>ACCEPT</code> by your classifiers.  You are free to rework the parameters of your decision tree if you think you can reduce the classification errors.</p>
+<p>&#167;  Now that you have a classifier for Mr. Dirk, use the file <a href="https://github.com/kmsaumcis/mcis6273_f17_datamining/tree/master/homework/hw3/data/sgi_diamond_inventory.csv"><code>https://github.com/kmsaumcis/mcis6273_f17_datamining/tree/master/homework/hw3/data/sgi_diamond_inventory.csv</code></a> to classify Sparkling Gem&rsquo;s inventory. Find all the diamonds that are classified <code>ACCEPT</code> by your classifiers.  You are free to rework the parameters of your decision tree if you think you can reduce the classification errors.</p>
 
 <ul>
 <li>export the data to a CSV file called <code>mr_dirk_inventory.csv</code> and make sure you attach this to your final submission.</li>
@@ -142,29 +142,31 @@ where $W$ is the weight of the diamond in carats.  Please <strong>provide code a
 
 <p>In this part of the assignment you will build a relatively simple Bayesian classifier.  The data we will be using comes from a subset of a large US Department of Transportation dataset of over 7M records <a href="https://www.kaggle.com/jboysen/us-traffic-2015/data">which you can optionally explore here</a>.  The data represents traffic volume from various places around the US, captured hourly for each day of data collection.  The dataset we have is a sample of less than 10% of the original data, and we&rsquo;ll restrict that further to capture just over 100K data points.</p>
 
-<p>The DOT needs to understand traffic patterns, but in particular wants to understand the traffic patterns in urban areas.  What they&rsquo;d like to do is build a classifier that, given a series of volume counts, can give the day of the week.  In other words given a data point representing the volume counts by hour, provide the day of the week.  The primary reason for building such a classifier is that some of the station data is not collecting day of week or has become unreliable.  Thus, they plan to use the reliable data to classify the missing and unreliable data as a quality control check.  They will keep the classifier that cam achieve results above $0.80$.</p>
+<p>The DOT needs to understand traffic patterns, but in particular wants to understand the traffic patterns in urban areas.  What they&rsquo;d like to do is build a classifier that, given a series of volume counts, can give the day of the week.  In other words given a data point representing the volume counts by hour, provide the day of the week.  The primary reason for building such a classifier is that some of the station data is not collecting day of week or has become unreliable.  Thus, they plan to use the reliable data to classify the missing and unreliable data as a quality control check.  They will keep the classifier that can achieve results above $0.80$.</p>
 
-<p>Recall, the setup of our Bayesian problem, we want to find the classifier which given data $d$ about the volume counts, we can produce the day of the week, $C$, or:
-  $$ \Pr(C \big| d_1, \ldots, d<em>j) = \Pr&copy; \prod</em>{i=0}^n \Pr(  d_i \big| C )$$
-where $C$ is the day of the week and $d_j$ the traffic volume counts for the given time window in 1 hour increments over 24 hours.  Now we talked about how Naive Bayes works best in the context of discrete features, but <code>sklearn</code> provides a Bayes classifier over continuous features assumed to be Gaussian.  This assumption, while not strictly true, can be practically used in large datasets.  We will be using this classifier in the assignment.  Our probabilities are then computed as such:</p>
+<p>Recall, the setup of our Bayesian problem, we want to find the classifier which given data $d$ about the volume counts, we can produce the day of the week, $C$, or:</p>
 
-<p>$$ \Pr(  d_i \big| C ) = \frac{1}{\sqrt{2\pi\sigma_C^2}} \exp \big(-\frac{(x_i - \mu_C)^2}{2 \sigma_C^2}\big)$$</p>
+<p>$$ \Pr(C \big| d_1, \ldots, d_j) = \Pr( C ) \prod_i^n \Pr(  d_i \big| C ) $$</p>
+
+<p>where $C$ is the day of the week and $d_j$ the traffic volume counts for the given time window in 1 hour increments over 24 hours.  Now we talked about how Naive Bayes works best in the context of discrete features, but <code>sklearn</code> provides a Bayes classifier over continuous features assumed to be Gaussian.  This assumption, while not strictly true, can be practically used in large datasets.  We will be using this classifier in the assignment.  Our probabilities are then computed as such:</p>
+
+<p>$$ \Pr(  d_i \big| C ) = \frac{1}{\sqrt{2\pi\sigma_C^2}} \exp \bigg(-\frac{(x_i - \mu_C)^2}{2 \sigma_C^2}\bigg)$$</p>
 
 <p>To perform this task will require you to train the classifier on some labeled data, test it, then use the provided unlabelled set to classify the day of week on unseen data.  The final class, $\hat{C}$ is then computed as :</p>
 
-<p>$$\hat{C} = \mathrm{argmax}<em>C \Pr&copy; \prod</em>{i=0}^n \Pr(  d_i \big| C ).$$</p>
+<p>$$ \hat{C} = \mathrm{argmax}_C \Pr( C ) \prod_i^n \Pr(  d_i \big| C ).$$</p>
 
-<p>&#167;  Prepare the dataset that is to include <strong>only</strong> the traffic volume data where the <code>functional_classification_name</code> is <code>Urban: Principal Arterial - Interstate</code> since we want to make classifications <strong>only</strong> on urban interstate data.  Use the file <a href="data/dot_testtrain.csv"><code>data/dot_testtrain.csv</code></a>.</p>
+<p>&#167;  Prepare the dataset that is to include <strong>only</strong> the traffic volume data where the <code>functional_classification_name</code> is <code>Urban: Principal Arterial - Interstate</code> since we want to make classifications <strong>only</strong> on urban interstate data.  Use the file <a href="https://github.com/kmsaumcis/mcis6273_f17_datamining/tree/master/homework/hw3/data/dot_testtrain.csv"><code>data/dot_testtrain.csv</code></a>.</p>
 
 <p>&#167;  Plot the <strong>bar chart</strong> of traffic volume by day of week for the following three times <code>traffic_volume_counted_after_0700_to_0800</code>, <code>traffic_volume_counted_after_2000_to_2100</code>, <code>traffic_volume_counted_after_1500_to_1600</code>.  That is group by <code>day_of_week</code> and plot the data in a single chart using <code>DataFrame.plot(kind='bar')</code> as in prior homeworks.</p>
 
-<p>&#167;  Build the classifier over the <code>data/dot_testtrain.csv</code>, creating a <sup>70</sup>&frasl;<sub>30</sub> split of the data as in the prior exercise.  You will need to use the <a href="http://scikit-learn.org/stable/modules/naive_bayes.html#gaussian-naive-bayes"><code>sklearn.naive_bayes.GaussianNB</code></a>.  Train the data on 70% of the samples and test on the remaining 30%.</p>
+<p>&#167;  Build the classifier over the <code>data/dot_testtrain.csv</code>, creating a 70-30 split of the data as in the prior exercise.  You will need to use the <a href="http://scikit-learn.org/stable/modules/naive_bayes.html#gaussian-naive-bayes"><code>sklearn.naive_bayes.GaussianNB</code></a>.  Train the data on 70% of the samples and test on the remaining 30%.</p>
 
 <ul>
 <li>What is the overall classifier accuracy?  Show your code.</li>
 </ul>
 
-<p>&#167;  Now that you have a classifier, load the data in <a href="data/dot_validate.csv"><code>data/dot_validate</code></a> and run your classifier on the data.  Add the class label back to the unlabeled DataFrame onto a column <code>nb_classifier_label</code> and save the file back as <code>dot_validate_labeled.csv</code>.  Make sure you attach the file to your submission.</p>
+<p>&#167;  Now that you have a classifier, load the data in <a href="https://github.com/kmsaumcis/mcis6273_f17_datamining/tree/master/homework/hw3/data/dot_validate.csv"><code>data/dot_validate</code></a> and run your classifier on the data.  Add the class label back to the unlabeled DataFrame onto a column <code>nb_classifier_label</code> and save the file back as <code>dot_validate_labeled.csv</code>.  Make sure you attach the file to your submission.</p>
 
 <p>&#167;  The DOT stakeholder would like to know whether you achieved the desired result of $0.80$ accuracy.  Did you achieve this with your classifier?  Explain with the appropriate level of evidence.  Produce a classification report and show the precision, recall and f1-score as well.</p>
 
