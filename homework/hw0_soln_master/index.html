@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> | MCIS6273 | Data Mining | Fall 2017</title>
+    <link rel="stylesheet" href="/mcis6273_f17_datamining/css/style.css" />
+    <link rel="stylesheet" href="/mcis6273_f17_datamining/css/fonts.css" />
+    <style>
+@import url('https://fonts.googleapis.com/css?family=Fanwood+Text:400,400i|Faustina:400,400i,600,600i|Libre+Baskerville|Lora:400,400i,700,700i|Merriweather:400,400i,700,700i|Old+Standard+TT|Open+Sans:400,400i,700,700i|Playfair+Display|Radley|Spectral:400,400i,600,600i,700,700i');
+</style>
+
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/mcis6273_f17_datamining">Home</a></li>
+      
+      <li><a href="/mcis6273_f17_datamining/syllabus/">Syllabus</a></li>
+      
+      <li><a href="/mcis6273_f17_datamining/homework/">Homework</a></li>
+      
+      <li><a href="/mcis6273_f17_datamining/notes/">Lecture Notes</a></li>
+      
+      <li><a href="/mcis6273_f17_datamining/index.xml">Subscribe</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+<div class="article-meta">
+<h1><span class="title"></span></h1>
+
+
+</div>
+
+<main>
+
+
+<h1 id="mcis6273-data-mining-prof-maull-fall-2017-hw0-solution">MCIS6273 Data Mining (Prof. Maull) / Fall 2017 / HW0 SOLUTION</h1>
+
+<p><strong>This assignment is worth up to 20 POINTS to your grade total if you complete it on time.</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Points <br/>Possible</th>
+<th align="center">Due Date</th>
+<th align="center">Time Commitment <br/>(estimated)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">20</td>
+<td align="center">Wednesday, Sep 06 @ Midnight</td>
+<td align="center">4 hours or less</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li><p><strong>GRADING:</strong> Grading will be aligned with the completeness of the objectives.</p></li>
+
+<li><p><strong>INDEPENDENT WORK:</strong> Copying, cheating, plagiarism  and academic dishonesty <em>are not tolerated</em> by Univerisity or course policy.  Please see the syllabus for the full departmental and University statement on the academic code of honor.</p></li>
+</ul>
+
+<h2 id="objectives">OBJECTIVES</h2>
+
+<ul>
+<li><p>Familiarize yourself with <a href="https://github.com">Github</a></p></li>
+
+<li><p>Work with exploring unstructured data with Python and text</p></li>
+
+<li><p>Work with a large dataset and understand data munging in Python Pandas</p></li>
+</ul>
+
+<h2 id="what-to-turn-in">WHAT TO TURN IN</h2>
+
+<p>You are being encouraged to turn the assignment in using the provided Jupyter Notebook.  To do so,
+clone <a href="https://github.com/kmsaumcis">the course repository</a> and modify the <code>hw0.ipynb</code> file in the <code>homework/</code>
+directory.  If you do not know how to do this, please ask, or visit one of the many tutorials out there on
+the basics of using Github and cloning repositories.</p>
+
+<p>Turn in a copy of a <code>.ipynb</code> file, a PDF or Word Document to Blackboard with the answers to the questions
+labeled with the &#167; sign.</p>
+
+<h2 id="assignment-tasks">ASSIGNMENT TASKS</h2>
+
+<h3 id="0-familiarize-yourself-with-github-https-github-com">(0%) Familiarize yourself with <a href="https://github.com">Github</a></h3>
+
+<p><a href="http://github.com">Github</a> is the <em>de facto</em> home of open source software on
+the web.  While there are other platforms that provide similar (and in some
+cases better) services, it is still <em>the place</em> for some of the largest open
+source software projects in the world.  You will be creating an account on
+Github for several reasons:</p>
+
+<ol>
+<li>we will be using Github to store, transmit and share homework and
+lecture notes,</li>
+<li>we will use Github for at all assignments,</li>
+<li>at some point in your future, you will <em>very likely</em> be using Github,
+if for private work for a company or public work on an open source project.</li>
+</ol>
+
+<p>&#167;  <strong>Find ONE Github repository of interest and explore it</strong>.  There is
+<strong>nothing to turn in</strong> for this task &ndash; just begin to explore Github.</p>
+
+<h3 id="25-work-with-exploring-unstructured-data-with-python-and-text">(25%) Work with exploring unstructured data with Python and text</h3>
+
+<p>In this part, you will explore some text data and get a little familiar
+with Python&rsquo;s  parsing and text capabilities.  You will grab data from
+the free books provided online from <a href="http://gutenberg.org">Project Gutenberg</a>
+and use the provided code to compare these documents.  Turn in the answers to
+the given tasks after studying the code provided in <code>gutenberg_get_words()</code>
+which takes a url for a book on Project Gutenberg and returns a list of the
+words in the book.  Notice the <code>stopwords=</code> parameter is used to eliminate
+words that relay low or no information.  This is a common technique use in
+text processing.</p>
+
+<p>These five books will be used for the tasks for this question:</p>
+
+<table>
+<thead>
+<tr>
+<th align="right">Book</th>
+<th align="right">URL</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="right">The Prince, Machiavelli</td>
+<td align="right"><a href="http://www.gutenberg.org/cache/epub/1232/pg1232.txt">http://www.gutenberg.org/cache/epub/1232/pg1232.txt</a></td>
+</tr>
+
+<tr>
+<td align="right">Frankenstein; Or, The Modern Prometheus by Mary Wollstonecraft Shelley</td>
+<td align="right"><a href="http://www.gutenberg.org/cache/epub/84/pg84.txt">http://www.gutenberg.org/cache/epub/84/pg84.txt</a></td>
+</tr>
+
+<tr>
+<td align="right">Siddhartha by Hermann Hesse</td>
+<td align="right"><a href="http://www.gutenberg.org/cache/epub/2500/pg2500.txt">http://www.gutenberg.org/cache/epub/2500/pg2500.txt</a></td>
+</tr>
+
+<tr>
+<td align="right">The Republic by Plato</td>
+<td align="right"><a href="http://www.gutenberg.org/cache/epub/1497/pg1497.txt">http://www.gutenberg.org/cache/epub/1497/pg1497.txt</a></td>
+</tr>
+
+<tr>
+<td align="right">The Federalist Papers by Alexander Hamilton, John Jay, and James Madison</td>
+<td align="right"><a href="http://www.gutenberg.org/cache/epub/1404/pg1404.txt">http://www.gutenberg.org/cache/epub/1404/pg1404.txt</a></td>
+</tr>
+</tbody>
+</table>
+
+<p>&#167;  <strong>submit the Python code that does the following:</strong></p>
+
+<ul>
+<li><p>using the code and the 5 books provided above, explore and
+apply the very nice Python library
+called <a href="https://docs.python.org/2/library/collections.html"><code>collections</code></a>.
+Use the <a href="https://docs.python.org/2/library/collections.html#collections.Counter"><code>Counter</code></a>
+class to load the word frequencies of each book into a Python dictionary.</p></li>
+
+<li><p><strong>NOTE</strong>: you will need to be online with an internet connection
+for this to work, since it loads the data directly from the URLs
+of the books.</p></li>
+</ul>
+
+<pre><code class="language-python">US_STOPWORDS = [&quot;a&quot;, &quot;about&quot;, &quot;above&quot;, &quot;above&quot;, &quot;across&quot;, &quot;after&quot;, &quot;afterwards&quot;, &quot;again&quot;, &quot;against&quot;, &quot;all&quot;, &quot;almost&quot;, &quot;alone&quot;, &quot;along&quot;, &quot;already&quot;, &quot;also&quot;,&quot;although&quot;,&quot;always&quot;,&quot;am&quot;,&quot;among&quot;, &quot;amongst&quot;, &quot;amoungst&quot;, &quot;amount&quot;,  &quot;an&quot;, &quot;and&quot;, &quot;another&quot;, &quot;any&quot;,&quot;anyhow&quot;,&quot;anyone&quot;,&quot;anything&quot;,&quot;anyway&quot;, &quot;anywhere&quot;, &quot;are&quot;, &quot;around&quot;, &quot;as&quot;,  &quot;at&quot;, &quot;back&quot;,&quot;be&quot;,&quot;became&quot;, &quot;because&quot;,&quot;become&quot;,&quot;becomes&quot;, &quot;becoming&quot;, &quot;been&quot;, &quot;before&quot;, &quot;beforehand&quot;, &quot;behind&quot;, &quot;being&quot;, &quot;below&quot;, &quot;beside&quot;, &quot;besides&quot;, &quot;between&quot;, &quot;beyond&quot;, &quot;bill&quot;, &quot;both&quot;, &quot;bottom&quot;,&quot;but&quot;, &quot;by&quot;, &quot;call&quot;, &quot;can&quot;, &quot;cannot&quot;, &quot;cant&quot;, &quot;co&quot;, &quot;con&quot;, &quot;could&quot;, &quot;couldnt&quot;, &quot;cry&quot;, &quot;de&quot;, &quot;describe&quot;, &quot;detail&quot;, &quot;do&quot;, &quot;done&quot;, &quot;down&quot;, &quot;due&quot;, &quot;during&quot;, &quot;each&quot;, &quot;eg&quot;, &quot;eight&quot;, &quot;either&quot;, &quot;eleven&quot;,&quot;else&quot;, &quot;elsewhere&quot;, &quot;empty&quot;, &quot;enough&quot;, &quot;etc&quot;, &quot;even&quot;, &quot;ever&quot;, &quot;every&quot;, &quot;everyone&quot;, &quot;everything&quot;, &quot;everywhere&quot;, &quot;except&quot;, &quot;few&quot;, &quot;fifteen&quot;, &quot;fify&quot;, &quot;fill&quot;, &quot;find&quot;, &quot;fire&quot;, &quot;first&quot;, &quot;five&quot;, &quot;for&quot;, &quot;former&quot;, &quot;formerly&quot;, &quot;forty&quot;, &quot;found&quot;, &quot;four&quot;, &quot;from&quot;, &quot;front&quot;, &quot;full&quot;, &quot;further&quot;, &quot;get&quot;, &quot;give&quot;, &quot;go&quot;, &quot;had&quot;, &quot;has&quot;, &quot;hasnt&quot;, &quot;have&quot;, &quot;he&quot;, &quot;hence&quot;, &quot;her&quot;, &quot;here&quot;, &quot;hereafter&quot;, &quot;hereby&quot;, &quot;herein&quot;, &quot;hereupon&quot;, &quot;hers&quot;, &quot;herself&quot;, &quot;him&quot;, &quot;himself&quot;, &quot;his&quot;, &quot;how&quot;, &quot;however&quot;, &quot;hundred&quot;, &quot;ie&quot;, &quot;if&quot;, &quot;in&quot;, &quot;inc&quot;, &quot;indeed&quot;, &quot;interest&quot;, &quot;into&quot;, &quot;is&quot;, &quot;it&quot;, &quot;its&quot;, &quot;itself&quot;, &quot;keep&quot;, &quot;last&quot;, &quot;latter&quot;, &quot;latterly&quot;, &quot;least&quot;, &quot;less&quot;, &quot;ltd&quot;, &quot;made&quot;, &quot;many&quot;, &quot;may&quot;, &quot;me&quot;, &quot;meanwhile&quot;, &quot;might&quot;, &quot;mill&quot;, &quot;mine&quot;, &quot;more&quot;, &quot;moreover&quot;, &quot;most&quot;, &quot;mostly&quot;, &quot;move&quot;, &quot;much&quot;, &quot;must&quot;, &quot;my&quot;, &quot;myself&quot;, &quot;name&quot;, &quot;namely&quot;, &quot;neither&quot;, &quot;never&quot;, &quot;nevertheless&quot;, &quot;next&quot;, &quot;nine&quot;, &quot;no&quot;, &quot;nobody&quot;, &quot;none&quot;, &quot;noone&quot;, &quot;nor&quot;, &quot;not&quot;, &quot;nothing&quot;, &quot;now&quot;, &quot;nowhere&quot;, &quot;of&quot;, &quot;off&quot;, &quot;often&quot;, &quot;on&quot;, &quot;once&quot;, &quot;one&quot;, &quot;only&quot;, &quot;onto&quot;, &quot;or&quot;, &quot;other&quot;, &quot;others&quot;, &quot;otherwise&quot;, &quot;our&quot;, &quot;ours&quot;, &quot;ourselves&quot;, &quot;out&quot;, &quot;over&quot;, &quot;own&quot;,&quot;part&quot;, &quot;per&quot;, &quot;perhaps&quot;, &quot;please&quot;, &quot;put&quot;, &quot;rather&quot;, &quot;re&quot;, &quot;same&quot;, &quot;see&quot;, &quot;seem&quot;, &quot;seemed&quot;, &quot;seeming&quot;, &quot;seems&quot;, &quot;serious&quot;, &quot;several&quot;, &quot;she&quot;, &quot;should&quot;, &quot;show&quot;, &quot;side&quot;, &quot;since&quot;, &quot;sincere&quot;, &quot;six&quot;, &quot;sixty&quot;, &quot;so&quot;, &quot;some&quot;, &quot;somehow&quot;, &quot;someone&quot;, &quot;something&quot;, &quot;sometime&quot;, &quot;sometimes&quot;, &quot;somewhere&quot;, &quot;still&quot;, &quot;such&quot;, &quot;system&quot;, &quot;take&quot;, &quot;ten&quot;, &quot;than&quot;, &quot;that&quot;, &quot;the&quot;, &quot;their&quot;, &quot;them&quot;, &quot;themselves&quot;, &quot;then&quot;, &quot;thence&quot;, &quot;there&quot;, &quot;thereafter&quot;, &quot;thereby&quot;, &quot;therefore&quot;, &quot;therein&quot;, &quot;thereupon&quot;, &quot;these&quot;, &quot;they&quot;, &quot;thickv&quot;, &quot;thin&quot;, &quot;third&quot;, &quot;this&quot;, &quot;those&quot;, &quot;though&quot;, &quot;three&quot;, &quot;through&quot;, &quot;throughout&quot;, &quot;thru&quot;, &quot;thus&quot;, &quot;to&quot;, &quot;together&quot;, &quot;too&quot;, &quot;top&quot;, &quot;toward&quot;, &quot;towards&quot;, &quot;twelve&quot;, &quot;twenty&quot;, &quot;two&quot;, &quot;un&quot;, &quot;under&quot;, &quot;until&quot;, &quot;up&quot;, &quot;upon&quot;, &quot;us&quot;, &quot;very&quot;, &quot;via&quot;, &quot;was&quot;, &quot;we&quot;, &quot;well&quot;, &quot;were&quot;, &quot;what&quot;, &quot;whatever&quot;, &quot;when&quot;, &quot;whence&quot;, &quot;whenever&quot;, &quot;where&quot;, &quot;whereafter&quot;, &quot;whereas&quot;, &quot;whereby&quot;, &quot;wherein&quot;, &quot;whereupon&quot;, &quot;wherever&quot;, &quot;whether&quot;, &quot;which&quot;, &quot;while&quot;, &quot;whither&quot;, &quot;who&quot;, &quot;whoever&quot;, &quot;whole&quot;, &quot;whom&quot;, &quot;whose&quot;, &quot;why&quot;, &quot;will&quot;, &quot;with&quot;, &quot;within&quot;, &quot;without&quot;, &quot;would&quot;, &quot;yet&quot;, &quot;you&quot;, &quot;your&quot;, &quot;yours&quot;, &quot;yourself&quot;, &quot;yourselves&quot;, &quot;the&quot;]
+
+def gutenberg_get_words(url=&quot;http://www.gutenberg.org/cache/epub/1232/pg1232.txt&quot;, range=slice(0,None), stopwords=[]):
+    import requests
+    import re
+    
+    r = requests.get(url)
+    data = re.sub(r&quot;[^\w\s]&quot;, &quot;&quot;, str(r.text)).lower()
+   
+    return \
+        [w for w in data.split() if w not in stopwords]
+</code></pre>
+
+<pre><code class="language-python">booklist = \
+[
+    ('The Prince, Machiavelli', 'http://www.gutenberg.org/cache/epub/1232/pg1232.txt'),
+    ('Frankenstein; Or, The Modern Prometheus by Mary Wollstonecraft Shelley', 'http://www.gutenberg.org/cache/epub/84/pg84.txt'),
+    ('Siddhartha by Hermann Hesse', 'http://www.gutenberg.org/cache/epub/2500/pg2500.txt'),
+    ('The Republic by Plato', 'http://www.gutenberg.org/cache/epub/1497/pg1497.txt'),
+    ('The Federalist Papers by Alexander Hamilton, John Jay, and James Madison', 'http://www.gutenberg.org/cache/epub/1404/pg1404.txt')
+]
+</code></pre>
+
+<pre><code class="language-python">from collections import Counter
+
+word_freq_top30 = {}
+
+for book, url in booklist:
+    words = gutenberg_get_words(url, stopwords=US_STOPWORDS)
+    word_freq_top30[book] = Counter(words).most_common(30)
+</code></pre>
+
+<pre><code class="language-python">word_freq_top30
+</code></pre>
+
+<pre><code>{'Frankenstein; Or, The Modern Prometheus by Mary Wollstonecraft Shelley': [('i',
+   2840),
+  ('man', 131),
+  ('did', 119),
+  ('life', 114),
+  ('father', 113),
+  ('shall', 107),
+  ('eyes', 104),
+  ('said', 102),
+  ('time', 98),
+  ('saw', 94),
+  ('project', 87),
+  ('night', 87),
+  ('elizabeth', 86),
+  ('mind', 85),
+  ('day', 80),
+  ('felt', 79),
+  ('work', 78),
+  ('death', 76),
+  ('heart', 76),
+  ('feelings', 76),
+  ('thought', 74),
+  ('dear', 72),
+  ('soon', 71),
+  ('friend', 70),
+  ('passed', 67),
+  ('miserable', 65),
+  ('heard', 62),
+  ('like', 61),
+  ('place', 60),
+  ('love', 59)],
+ 'Siddhartha by Hermann Hesse': [('i', 395),
+  ('siddhartha', 379),
+  ('govinda', 139),
+  ('time', 139),
+  ('like', 138),
+  ('river', 108),
+  ('saw', 99),
+  ('long', 97),
+  ('said', 95),
+  ('did', 88),
+  ('life', 88),
+  ('project', 87),
+  ('man', 84),
+  ('thought', 82),
+  ('love', 80),
+  ('learned', 80),
+  ('teachings', 77),
+  ('just', 74),
+  ('felt', 74),
+  ('people', 74),
+  ('kamala', 72),
+  ('heart', 71),
+  ('world', 68),
+  ('face', 67),
+  ('eyes', 66),
+  ('oh', 66),
+  ('friend', 65),
+  ('know', 63),
+  ('samana', 62),
+  ('spoke', 61)],
+ 'The Federalist Papers by Alexander Hamilton, John Jay, and James Madison': [('states',
+   863),
+  ('government', 827),
+  ('state', 792),
+  ('power', 619),
+  ('people', 614),
+  ('constitution', 466),
+  ('i', 382),
+  ('union', 375),
+  ('new', 370),
+  ('national', 342),
+  ('federal', 326),
+  ('authority', 295),
+  ('public', 294),
+  ('great', 294),
+  ('ought', 275),
+  ('general', 270),
+  ('powers', 266),
+  ('shall', 257),
+  ('executive', 257),
+  ('united', 248),
+  ('time', 248),
+  ('men', 236),
+  ('members', 230),
+  ('number', 229),
+  ('body', 225),
+  ('particular', 221),
+  ('different', 214),
+  ('subject', 213),
+  ('laws', 210),
+  ('legislative', 210)],
+ 'The Prince, Machiavelli': [('prince', 222),
+  ('i', 216),
+  ('men', 161),
+  ('castruccio', 136),
+  ('people', 115),
+  ('having', 109),
+  ('ought', 94),
+  ('time', 93),
+  ('great', 89),
+  ('duke', 88),
+  ('project', 87),
+  ('state', 85),
+  ('did', 81),
+  ('man', 79),
+  ('new', 75),
+  ('make', 73),
+  ('good', 71),
+  ('king', 69),
+  ('arms', 63),
+  ('fortune', 62),
+  ('work', 62),
+  ('way', 61),
+  ('florentines', 61),
+  ('necessary', 60),
+  ('princes', 59),
+  ('italy', 58),
+  ('fear', 57),
+  ('things', 57),
+  ('gutenbergtm', 56),
+  ('said', 55)],
+ 'The Republic by Plato': [('i', 1782),
+  ('said', 1117),
+  ('state', 684),
+  ('good', 657),
+  ('man', 599),
+  ('true', 585),
+  ('like', 477),
+  ('yes', 466),
+  ('men', 426),
+  ('say', 420),
+  ('life', 390),
+  ('justice', 358),
+  ('soul', 338),
+  ('nature', 336),
+  ('plato', 325),
+  ('just', 309),
+  ('knowledge', 292),
+  ('replied', 271),
+  ('let', 264),
+  ('shall', 264),
+  ('truth', 263),
+  ('certainly', 260),
+  ('great', 260),
+  ('things', 243),
+  ('world', 241),
+  ('way', 235),
+  ('mind', 230),
+  ('evil', 226),
+  ('make', 224),
+  ('time', 214)]}
+</code></pre>
+
+<pre><code class="language-python">for k, v in word_freq_top30.items():
+    v = [word for word, count in v]
+    for j, v_ in word_freq_top30.items():
+        v_ = [word for word, count in v_]
+        if j != k:
+            common_words = set(v).intersection(set(v_))
+            print(&quot;{} &lt;=&gt; {}\n\t{} common words: {}&quot;.format(k, j, len(common_words), common_words))
+    print(&quot;\n\n&quot;)
+</code></pre>
+
+<pre><code>The Prince, Machiavelli &lt;=&gt; Frankenstein; Or, The Modern Prometheus by Mary Wollstonecraft Shelley
+    7 common words: {'time', 'work', 'project', 'did', 'said', 'man', 'i'}
+The Prince, Machiavelli &lt;=&gt; Siddhartha by Hermann Hesse
+    7 common words: {'project', 'people', 'did', 'i', 'said', 'man', 'time'}
+The Prince, Machiavelli &lt;=&gt; The Republic by Plato
+    11 common words: {'things', 'great', 'men', 'good', 'make', 'i', 'said', 'state', 'way', 'man', 'time'}
+The Prince, Machiavelli &lt;=&gt; The Federalist Papers by Alexander Hamilton, John Jay, and James Madison
+    8 common words: {'time', 'great', 'men', 'people', 'new', 'state', 'i', 'ought'}
+
+
+
+Frankenstein; Or, The Modern Prometheus by Mary Wollstonecraft Shelley &lt;=&gt; The Prince, Machiavelli
+    7 common words: {'time', 'work', 'project', 'did', 'said', 'man', 'i'}
+Frankenstein; Or, The Modern Prometheus by Mary Wollstonecraft Shelley &lt;=&gt; Siddhartha by Hermann Hesse
+    15 common words: {'friend', 'like', 'saw', 'project', 'felt', 'did', 'i', 'said', 'thought', 'love', 'heart', 'man', 'time', 'eyes', 'life'}
+Frankenstein; Or, The Modern Prometheus by Mary Wollstonecraft Shelley &lt;=&gt; The Republic by Plato
+    8 common words: {'life', 'like', 'i', 'said', 'man', 'shall', 'time', 'mind'}
+Frankenstein; Or, The Modern Prometheus by Mary Wollstonecraft Shelley &lt;=&gt; The Federalist Papers by Alexander Hamilton, John Jay, and James Madison
+    3 common words: {'time', 'shall', 'i'}
+
+
+
+Siddhartha by Hermann Hesse &lt;=&gt; The Prince, Machiavelli
+    7 common words: {'time', 'project', 'people', 'did', 'said', 'man', 'i'}
+Siddhartha by Hermann Hesse &lt;=&gt; Frankenstein; Or, The Modern Prometheus by Mary Wollstonecraft Shelley
+    15 common words: {'friend', 'time', 'like', 'saw', 'project', 'felt', 'did', 'said', 'thought', 'love', 'heart', 'man', 'i', 'eyes', 'life'}
+Siddhartha by Hermann Hesse &lt;=&gt; The Republic by Plato
+    8 common words: {'like', 'just', 'i', 'said', 'man', 'time', 'world', 'life'}
+Siddhartha by Hermann Hesse &lt;=&gt; The Federalist Papers by Alexander Hamilton, John Jay, and James Madison
+    3 common words: {'time', 'people', 'i'}
+
+
+
+The Republic by Plato &lt;=&gt; The Prince, Machiavelli
+    11 common words: {'things', 'time', 'great', 'men', 'good', 'make', 'said', 'state', 'way', 'man', 'i'}
+The Republic by Plato &lt;=&gt; Frankenstein; Or, The Modern Prometheus by Mary Wollstonecraft Shelley
+    8 common words: {'time', 'like', 'said', 'mind', 'man', 'shall', 'i', 'life'}
+The Republic by Plato &lt;=&gt; Siddhartha by Hermann Hesse
+    8 common words: {'like', 'just', 'i', 'said', 'man', 'time', 'world', 'life'}
+The Republic by Plato &lt;=&gt; The Federalist Papers by Alexander Hamilton, John Jay, and James Madison
+    6 common words: {'time', 'great', 'men', 'state', 'shall', 'i'}
+
+
+
+The Federalist Papers by Alexander Hamilton, John Jay, and James Madison &lt;=&gt; The Prince, Machiavelli
+    8 common words: {'time', 'great', 'men', 'people', 'new', 'state', 'i', 'ought'}
+The Federalist Papers by Alexander Hamilton, John Jay, and James Madison &lt;=&gt; Frankenstein; Or, The Modern Prometheus by Mary Wollstonecraft Shelley
+    3 common words: {'time', 'shall', 'i'}
+The Federalist Papers by Alexander Hamilton, John Jay, and James Madison &lt;=&gt; Siddhartha by Hermann Hesse
+    3 common words: {'people', 'time', 'i'}
+The Federalist Papers by Alexander Hamilton, John Jay, and James Madison &lt;=&gt; The Republic by Plato
+    6 common words: {'great', 'men', 'i', 'state', 'shall', 'time'}
+</code></pre>
+
+<p>&#167;  <strong>turn in <em>at least</em> 2 sentences and any code if you used code
+to answering the following:</strong></p>
+
+<ul>
+<li>there are similarities and differences
+in the top 30 words of the five provided documents &ndash; be specific about
+describing what they are?  How similar
+or different are each of the top 30 words list?
+You can compare them by hand (look at them) or you are encouraged to
+write Python code to compare them automatically.</li>
+</ul>
+
+<h3 id="75-work-with-a-large-dataset-and-understand-data-munging-in-python-pandas">(75%) Work with a large dataset and understand data munging in Python Pandas</h3>
+
+<p>As we have learned in class, a great deal of time doing data mining involves understanding
+the data in a dataset and preprocessing it in preparation for working with it in a real
+analysis of some sort.  We will develop an understanding of:</p>
+
+<ul>
+<li>importing CSV data into Pandas DataFrames,</li>
+<li>exporting JSON data from a Pandas DataFrame,</li>
+<li>understand how to compute data from DataFrame elements
+<br /></li>
+</ul>
+
+<p>You might find the <a href="http://pandas.pydata.org/pandas-docs/stable/io.html">Pandas IO</a> library
+helpful in completing this task.</p>
+
+<p>We will be using an interesting data source: <strong>US Baseball Statistics Archive</strong> by
+Sean Lahman (CCBY-SA 3.0), which can be found in these two locations.  You can download the
+entire archive to your local machine.</p>
+
+<ul>
+<li><a href="http://seanlahman.com/baseball-archive/statistics/">http://seanlahman.com/baseball-archive/statistics/</a></li>
+<li><a href="https://github.com/chadwickbureau/baseballdatabank">https://github.com/chadwickbureau/baseballdatabank</a></li>
+</ul>
+
+<p>&#167;  <strong>submit the code to load the batting table</strong> from the Baseball Archive directly from the
+Github repository into a Pandas DataFrame.</p>
+
+<ul>
+<li>You can use the CSV file at
+<a href="https://raw.githubusercontent.com/chadwickbureau/baseballdatabank/master/core/Batting.csv">this url</a>.
+You will most certainly be using the <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.read_csv.html"><code>read_csv()</code> method</a>.</li>
+</ul>
+
+<pre><code class="language-python">import pandas as pd
+df = pd.read_csv('./data/Batting.csv') # reading locally
+</code></pre>
+
+<p>&#167;  <strong>submit the code to write the JSON file that contains all the batting records for the Cincinnati
+Reds (CIN) in 1981</strong>.</p>
+
+<ul>
+<li><p>This will require a simple query into the dataset (loaded as a DataFrame) &ndash; please read the <a href="http://pandas.pydata.org/pandas-docs/stable/indexing.html#boolean-indexing">documentation
+on boolean indexing</a>.</p></li>
+
+<li><p>You will need to explore the <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_json.html#pandas.DataFrame.to_json"><code>to_json()</code></a> method to then convert the DataFrame that results from the query above into a JSON object.</p></li>
+</ul>
+
+<pre><code class="language-python">df.head()
+</code></pre>
+
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>playerID</th>
+      <th>yearID</th>
+      <th>stint</th>
+      <th>teamID</th>
+      <th>lgID</th>
+      <th>G</th>
+      <th>AB</th>
+      <th>R</th>
+      <th>H</th>
+      <th>2B</th>
+      <th>...</th>
+      <th>RBI</th>
+      <th>SB</th>
+      <th>CS</th>
+      <th>BB</th>
+      <th>SO</th>
+      <th>IBB</th>
+      <th>HBP</th>
+      <th>SH</th>
+      <th>SF</th>
+      <th>GIDP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>abercda01</td>
+      <td>1871</td>
+      <td>1</td>
+      <td>TRO</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>addybo01</td>
+      <td>1871</td>
+      <td>1</td>
+      <td>RC1</td>
+      <td>NaN</td>
+      <td>25</td>
+      <td>118</td>
+      <td>30</td>
+      <td>32</td>
+      <td>6</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>8.0</td>
+      <td>1.0</td>
+      <td>4</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>allisar01</td>
+      <td>1871</td>
+      <td>1</td>
+      <td>CL1</td>
+      <td>NaN</td>
+      <td>29</td>
+      <td>137</td>
+      <td>28</td>
+      <td>40</td>
+      <td>4</td>
+      <td>...</td>
+      <td>19.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>2</td>
+      <td>5.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>allisdo01</td>
+      <td>1871</td>
+      <td>1</td>
+      <td>WS3</td>
+      <td>NaN</td>
+      <td>27</td>
+      <td>133</td>
+      <td>28</td>
+      <td>44</td>
+      <td>10</td>
+      <td>...</td>
+      <td>27.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0</td>
+      <td>2.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ansonca01</td>
+      <td>1871</td>
+      <td>1</td>
+      <td>RC1</td>
+      <td>NaN</td>
+      <td>25</td>
+      <td>120</td>
+      <td>29</td>
+      <td>39</td>
+      <td>11</td>
+      <td>...</td>
+      <td>16.0</td>
+      <td>6.0</td>
+      <td>2.0</td>
+      <td>2</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 22 columns</p>
+</div>
+
+<pre><code class="language-python">df_cinc81 = df[(df.teamID=='CIN') &amp; (df.yearID==1981)]
+df_cinc81.to_json('cinc81_batting.json')
+</code></pre>
+
+<p>&#167;  <strong>submit the code that calculates the following batting rank score for the 1981 Reds (CIN)</strong>
+$$ \varphi =\ G {H \over AB} +  {{RBI} \over \sqrt {R}} $$
+<strong>where $G, H, AB, RBI, R$ are <em>games</em>, <em>hits</em>, <em>at bats</em>, <em>runs batted in</em> and <em>runs</em> respectively.</strong></p>
+
+<ul>
+<li>Your answer should ONLY include the batting for the <strong>1981 Cincinnati Reds batting roster</strong>.</li>
+</ul>
+
+<pre><code class="language-python"># while not a requirement for the assignment, we should take out problematic 0 values (in a denomenator) to make out output cleaner
+df_cinc81 = df_cinc81[(df_cinc81.AB&gt;0) &amp; (df_cinc81.R&gt;0)]
+</code></pre>
+
+<pre><code class="language-python">df_cinc81['score_varphi'] = df_cinc81.G * ( df_cinc81.H /  df_cinc81.AB) +  df_cinc81.RBI / (df_cinc81.R**.5)
+</code></pre>
+
+<pre><code class="language-python">df_cinc81.head()
+</code></pre>
+
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>playerID</th>
+      <th>yearID</th>
+      <th>stint</th>
+      <th>teamID</th>
+      <th>lgID</th>
+      <th>G</th>
+      <th>AB</th>
+      <th>R</th>
+      <th>H</th>
+      <th>2B</th>
+      <th>...</th>
+      <th>SB</th>
+      <th>CS</th>
+      <th>BB</th>
+      <th>SO</th>
+      <th>IBB</th>
+      <th>HBP</th>
+      <th>SH</th>
+      <th>SF</th>
+      <th>GIDP</th>
+      <th>score_varphi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>58351</th>
+      <td>bairdo01</td>
+      <td>1981</td>
+      <td>1</td>
+      <td>CIN</td>
+      <td>NL</td>
+      <td>24</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>11.000000</td>
+    </tr>
+    <tr>
+      <th>58363</th>
+      <td>barrage01</td>
+      <td>1981</td>
+      <td>1</td>
+      <td>CIN</td>
+      <td>NL</td>
+      <td>9</td>
+      <td>6</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.707107</td>
+    </tr>
+    <tr>
+      <th>58375</th>
+      <td>benchjo01</td>
+      <td>1981</td>
+      <td>1</td>
+      <td>CIN</td>
+      <td>NL</td>
+      <td>52</td>
+      <td>178</td>
+      <td>14</td>
+      <td>55</td>
+      <td>8</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>17</td>
+      <td>21.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>4.0</td>
+      <td>22.748947</td>
+    </tr>
+    <tr>
+      <th>58378</th>
+      <td>berenbr01</td>
+      <td>1981</td>
+      <td>1</td>
+      <td>CIN</td>
+      <td>NL</td>
+      <td>21</td>
+      <td>42</td>
+      <td>4</td>
+      <td>8</td>
+      <td>3</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2</td>
+      <td>18.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>4.500000</td>
+    </tr>
+    <tr>
+      <th>58388</th>
+      <td>biittla01</td>
+      <td>1981</td>
+      <td>1</td>
+      <td>CIN</td>
+      <td>NL</td>
+      <td>42</td>
+      <td>61</td>
+      <td>1</td>
+      <td>13</td>
+      <td>4</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>4</td>
+      <td>4.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>16.950820</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 23 columns</p>
+</div>
+
+<p>&#167;  <strong>for the 1981 data submit the top 4 batter IDs by their batting rank score, $\varphi$, previously calculated.</strong></p>
+
+<pre><code class="language-python">df_cinc81[['playerID', 'score_varphi']].sort_values(by='score_varphi', ascending=False).head(4)
+</code></pre>
+
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>playerID</th>
+      <th>score_varphi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>58577</th>
+      <td>fostege01</td>
+      <td>43.076087</td>
+    </tr>
+    <tr>
+      <th>58477</th>
+      <td>conceda01</td>
+      <td>41.354177</td>
+    </tr>
+    <tr>
+      <th>58618</th>
+      <td>griffke01</td>
+      <td>35.588393</td>
+    </tr>
+    <tr>
+      <th>58931</th>
+      <td>oestero01</td>
+      <td>34.735567</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</main>
+
+  <footer>
+  <script src="//yihui.name/js/math-code.js"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script async src="//yihui.name/js/center-img.js"></script>
+
+  
+
+  </footer>
+  </body>
+</html>
+
