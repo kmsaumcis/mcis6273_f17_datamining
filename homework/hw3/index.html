@@ -111,7 +111,7 @@ with the code or answers to the questions /tasks labeled with the &#167; sign.</
 
 <p>You are to take those decisions he&rsquo;s made and build a binary decision tree classifier.  Split the data into a test and training set, build the classifier from the training set and test it on the remaining test set.</p>
 
-<p>&#167;  Load the dataset of 2000 diamonds into a DataFrame and build a training set of 1400 diamonds.  Leave the remaining diamonds alone as a test set &ndash; you will notice we&rsquo;re going to use a <sup>70</sup>&frasl;<sub>30</sub> split.  You can save a lot of time by using <a href="http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html"><code>sklearn.model_selection.train_test_split()</code></a>, but you are free to write you own code to do the same. You will need to eliminate the column <code>0\: Unnamed</code> as it contains an index value from the original file that you will not need.</p>
+<p>&#167;  Load the dataset of 2000 diamonds into a DataFrame and build a training set of 1400 diamonds.  Leave the remaining diamonds alone as a test set &ndash; you will notice we&rsquo;re going to use a 70-30 split.  You can save a lot of time by using <a href="http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html"><code>sklearn.model_selection.train_test_split()</code></a>, but you are free to write you own code to do the same. You will need to eliminate the column <code>0\: Unnamed</code> as it contains an index value from the original file that you will not need.</p>
 
 <p>&#167;  Use the <a href="http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html"><code>sklearn.tree.DecisionTreeClassifier</code></a> class to build a decision tree classifier.  You can use the defaults for now (e.g. you can keep the default <code>criteria='gini'</code>).  To do this, you will need to use the following pattern:</p>
 
@@ -160,7 +160,7 @@ where $W$ is the weight of the diamond in carats.  Please <strong>provide code a
 
 <p>&#167;  Plot the <strong>bar chart</strong> of traffic volume by day of week for the following three times <code>traffic_volume_counted_after_0700_to_0800</code>, <code>traffic_volume_counted_after_2000_to_2100</code>, <code>traffic_volume_counted_after_1500_to_1600</code>.  That is group by <code>day_of_week</code> and plot the data in a single chart using <code>DataFrame.plot(kind='bar')</code> as in prior homeworks.</p>
 
-<p>&#167;  Build the classifier over the <code>data/dot_testtrain.csv</code>, creating a 70-30 split of the data as in the prior exercise.  You will need to use the <a href="http://scikit-learn.org/stable/modules/naive_bayes.html#gaussian-naive-bayes"><code>sklearn.naive_bayes.GaussianNB</code></a>.  Train the data on 70% of the samples and test on the remaining 30%.</p>
+<p>&#167;  Build the classifier over the <code>data/dot_testtrain.csv</code>, creating a 70-30 split of the data as in the prior exercise.  You will need to use the <a href="http://scikit-learn.org/stable/modules/naive_bayes.html#gaussian-naive-bayes"><code>sklearn.naive_bayes.GaussianNB</code></a>.  Train the data on 70% of the samples and test on the remaining 30%.  The class labels in your classifier are the day of the week.</p>
 
 <ul>
 <li>What is the overall classifier accuracy?  Show your code.</li>
